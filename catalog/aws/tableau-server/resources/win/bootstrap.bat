@@ -95,4 +95,3 @@ netsh advfirewall firewall add rule name="Tableau_Server_Custom" localport=80,44
 echo TSM is initialized and taking requests at: https://%IP%:8850/
 
 copy "C:\Program Files\Tableau\Tableau Server\install_log*" tableau\*
-

@@ -1,6 +1,6 @@
 /*
-* Glue is AWS's fully managed extract, transform, and load (ETL) service. 
-* A Glue crawler is used to access a data store and create table definitions. 
+* Glue is AWS's fully managed extract, transform, and load (ETL) service.
+* A Glue crawler is used to access a data store and create table definitions.
 * This can be used in conjuction with Amazon Athena to query flat files in S3 buckets using SQL.
 */
 

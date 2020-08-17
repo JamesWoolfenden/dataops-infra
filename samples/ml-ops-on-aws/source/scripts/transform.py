@@ -31,13 +31,13 @@ def data_transform(obj, train=True):
     df.replace(to_replace={'No': 0, 'Yes':1}, inplace=True)
     df['RatioYearsPerCompany']=df['TotalWorkingYears']/(df['NumCompaniesWorked']+1)
 
-    cont_vars=['Age', 'DistanceFromHome',  'MonthlyIncome', 
+    cont_vars=['Age', 'DistanceFromHome',  'MonthlyIncome',
             'PercentSalaryHike', 'TrainingTimesLastYear', 'RatioYearsPerCompany',
             'YearsAtCompany', 'YearsInCurrentRole', 'YearsSinceLastPromotion', 'YearsWithCurrManager']
 
     ord_vars=['BusinessTravel', 'Education', 'EnvironmentSatisfaction', 'JobInvolvement', 'JobLevel',
             'JobSatisfaction', 'PerformanceRating', 'RelationshipSatisfaction', 'StockOptionLevel', 'WorkLifeBalance']
-            
+
     cat_vars=['Department', 'EducationField', 'JobRole', 'MaritalStatus']
 
     bool_vars=['Gender', 'OverTime']
@@ -79,4 +79,3 @@ if inference_type == 'batch':
     score_obj = s3c.get_object(Bucket=s3_source, Key=score_key)
     score = data_transform(score_obj, train=False)
     write_dataframe_to_csv_on_s3(score,s3_dest, score_key)
-

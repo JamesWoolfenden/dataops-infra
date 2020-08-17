@@ -20,4 +20,3 @@ with Diagram("vpc", show=False, direction="TB") as diag:
         # ec2 >> nat
         # ecs >> nat
         # nat >> igw
-

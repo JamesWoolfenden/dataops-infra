@@ -23,4 +23,3 @@ variable "resource_tags" {
 ########################################
 ### Custom variables for this module ###
 ########################################
-

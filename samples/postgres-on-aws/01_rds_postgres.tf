@@ -26,5 +26,3 @@ module "rds_postgres" {
 }
 
 #OPTIONAL CONFIGURATION HERE
-
-

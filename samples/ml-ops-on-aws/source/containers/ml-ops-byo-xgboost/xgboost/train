@@ -64,16 +64,16 @@ def train():
 
         # Usually max_delta_step is not needed, but it might help in logistic regression when class is extremely imbalanced.
         params = {
-            'base_score': 0.5, 
-            'booster': 'gbtree', 
-            'missing': None, 
-            'n_jobs': 1, 
+            'base_score': 0.5,
+            'booster': 'gbtree',
+            'missing': None,
+            'n_jobs': 1,
             'nthread': None,
-            'objective': 'binary:logistic', 
-            'random_state': 0, 
-            'silent': True, 
-            'reg_alpha': 0, 
-            'reg_lambda': 1, 
+            'objective': 'binary:logistic',
+            'random_state': 0,
+            'silent': True,
+            'reg_alpha': 0,
+            'reg_lambda': 1,
             #hyperparameters
             "gamma": float(hyperparams_dict['gamma']),
             "max_depth": int(hyperparams_dict['max_depth']),
@@ -108,7 +108,7 @@ def train():
         precision = np.mean(cv_results['test_precision'])
         recall = np.mean(cv_results['test_recall'])
         f1 = np.mean(cv_results['test_f1'])
-        
+
         print("{}: {}".format('roc_auc', roc_auc))
         print("{}: {}".format('accuracy', accuracy))
         print("{}: {}".format('precision', precision))

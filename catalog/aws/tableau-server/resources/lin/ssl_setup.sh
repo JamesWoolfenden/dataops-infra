@@ -14,7 +14,7 @@ if [[ -z "$1" ]]; then
 fi
 read -r -p "Continue? [y/N] " response
 case "$response" in
-    [yY][eE][sS]|[yY]) 
+    [yY][eE][sS]|[yY])
         echo "Continuing SSL config..."
         ;;
     *)
@@ -46,7 +46,7 @@ RETURN_CODE=$?
 echo -e "\nSSL Setup complete. Please scan above for any critical error messages.\n"
 read -r -p "Would you like to apply changes and restart the Tableau Server now? [y/N] " response
 case "$response" in
-    [yY][eE][sS]|[yY]) 
+    [yY][eE][sS]|[yY])
         echo "Applying changes and rebooting Tableau Server..."
         $TSM pending-changes apply
         ;;
