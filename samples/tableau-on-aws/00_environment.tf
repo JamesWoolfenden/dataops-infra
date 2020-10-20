@@ -24,10 +24,10 @@ locals {
 }
 
 provider "aws" {
-  version                 = "~> 2.10"
-  region                  = local.aws_region
-  shared_credentials_file = local.aws_credentials_file
-  profile                 = "default"
+  version = "~> 2.10"
+  region  = local.aws_region
+
+
 }
 
 output "env_summary" { value = module.env.summary }

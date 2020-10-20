@@ -9,7 +9,7 @@ output "ecs_checklogs_cli" {
 }
 output "ecs_container_name" {
   description = "The name of the task's primary container."
-  value       = "${var.container_name}"
+  value       = var.container_name
 }
 output "ecs_task_execution_role" {
   description = "An IAM role which has access to execute the ECS Task."
@@ -38,7 +38,7 @@ output "ecs_runtask_cli" {
 }
 output "ecs_task_name" {
   description = "The name of the ECS task."
-  value       = "${aws_ecs_task_definition.ecs_task.family}"
+  value       = aws_ecs_task_definition.ecs_task.family
 }
 output "ecs_security_group" {
   description = "The name of the EC2 security group used by ECS."

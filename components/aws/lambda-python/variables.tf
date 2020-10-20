@@ -55,8 +55,8 @@ EOF
 }
 
 variable "retention_in_days" {
-type=number
-default=14
+  type    = number
+  default = 14
 }
 
 variable "s3_trigger_bucket" {

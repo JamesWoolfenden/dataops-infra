@@ -64,7 +64,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   container_definitions    = <<DEFINITION
 [
   {
-    "name":       "${var.container_name}",
+    "name":       var.container_name,
     "image":      "${var.container_image}",
     "cpu":         ${var.container_num_cores * 1024},
     "memory":      ${var.container_ram_gb * 1024},
