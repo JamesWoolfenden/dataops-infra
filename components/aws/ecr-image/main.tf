@@ -22,6 +22,12 @@ resource "aws_ecr_repository" "ecr_repo" {
   name  = replace(lower("${var.name_prefix}${var.repository_name}"), "_", "-")
   tags  = var.resource_tags
   # lifecycle { prevent_destroy = true }
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+
+  image_tag_mutability = "IMMUTABLE"
 }
 
 resource "null_resource" "push" {
