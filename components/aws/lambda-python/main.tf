@@ -64,6 +64,9 @@ resource "aws_lambda_function" "python_lambda" {
     aws_cloudwatch_log_group.lambda_log_group,
     data.archive_file.lambda_zip
   ]
+  tracing_config {
+    mode = "PassThrough"
+  }
 }
 
 resource "aws_cloudwatch_log_group" "lambda_log_group" {
