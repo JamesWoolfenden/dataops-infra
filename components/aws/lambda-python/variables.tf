@@ -53,11 +53,12 @@ EOF
   type        = string
   default     = null
 }
-# variable "dependency_urls" {
-#   description = "If additional files should be packaged into the source code zip, please provide map of relative target paths to their respective download URLs."
-#   type        = map(string)
-#   default     = {}
-# }
+
+variable "retention_in_days" {
+type=number
+default=14
+}
+
 variable "s3_trigger_bucket" {
   description = "The name of an S3 bucket which will trigger this Lambda function."
   type        = string

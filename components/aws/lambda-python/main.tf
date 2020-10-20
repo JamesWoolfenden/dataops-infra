@@ -72,7 +72,7 @@ resource "aws_lambda_function" "python_lambda" {
 resource "aws_cloudwatch_log_group" "lambda_log_group" {
   count = local.is_disabled ? 0 : 1
   name  = "/aws/lambda/${var.name_prefix}lambda-${local.random_suffix}"
-  # retention_in_days = 14
+  retention_in_days = var.retention_in_days
 }
 
 resource "aws_s3_bucket_notification" "bucket_notification" {
@@ -85,3 +85,4 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
     filter_suffix       = split("*", var.s3_triggers[count.index].s3_path)[1]
   }
 }
+
