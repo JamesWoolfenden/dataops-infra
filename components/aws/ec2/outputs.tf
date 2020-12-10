@@ -64,8 +64,8 @@ locals {
         rsadecrypt(aws_instance.ec2_instances[0].password_data, file(var.ssh_private_key_filepath))
       )
     }
-  )
-  remote_admin_commands = (
+
+    ) remote_admin_commands = (
     # returns a map of instance IDs to remote connect commands (ssh for linux, rdp for windows)
     var.num_instances == 0 ? {} :
     tomap({
@@ -76,8 +76,8 @@ locals {
         "ssh -o StrictHostKeyChecking=no -i \"${coalesce(var.ssh_private_key_filepath, "n\\a")}\" ubuntu@${s.public_ip}"
       )
     })
-  )
-}
+
+) }
 output "windows_instance_passwords" {
   description = "A map of instance IDs to Windows passwords (if applicable)."
   value       = local.windows_instance_passwords

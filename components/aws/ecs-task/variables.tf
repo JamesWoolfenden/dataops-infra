@@ -105,9 +105,9 @@ resource "null_resource" "validate_is_fargate_config_valid" {
     var.container_ram_gb >= 2 * var.container_num_cores &&
     var.container_ram_gb <= 8 * var.container_num_cores &&
     var.container_ram_gb <= 30 ? 0 # OK if this check passes
-    : "error"                      # Force an error if check fails
-  )
-}
+    : "error"
+    # Force an error if check fails
+) }
 variable "schedules" {
   description = "A lists of scheduled execution times."
   type        = set(string)

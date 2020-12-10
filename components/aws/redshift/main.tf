@@ -90,8 +90,8 @@ resource "aws_redshift_cluster" "redshift" {
     var.admin_password == null
     ? "${lower(substr(random_id.random_pass.hex, 0, 4))}${upper(substr(random_id.random_pass.hex, 4, 4))}"
     : var.admin_password
-  )
 
+  )
   node_type           = var.node_type
   number_of_nodes     = var.num_nodes
   cluster_type        = var.num_nodes > 1 ? "multi-node" : "single-node"

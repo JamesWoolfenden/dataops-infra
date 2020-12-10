@@ -5,9 +5,7 @@
 *
 */
 
-data "aws_availability_zones" "az_list" {}
-data "aws_region" "current" {}
-data "http" "icanhazip" { url = "http://ipv4.icanhazip.com" }
+
 # TODO: Detect EC2 Pricing
 # data "http" "ec2_base_pricing_js" {
 #   url = "http://a0.awsstatic.com/pricing/1/ec2/linux-od.min.js"
@@ -23,43 +21,9 @@ data "http" "icanhazip" { url = "http://ipv4.icanhazip.com" }
 # }
 
 
-locals {
-  project_shortname = substr(var.name_prefix, 0, length(var.name_prefix) - 1)
-  my_ip             = "${chomp(data.http.icanhazip.body)}"
-  my_ip_cidr        = "${chomp(data.http.icanhazip.body)}/32"
-  admin_cidr        = flatten([local.my_ip_cidr, var.admin_cidr])
-  app_cidr          = length(var.app_cidr) == 0 ? local.admin_cidr : var.app_cidr
-  pricing_regex = chomp(
-    <<EOF
-${var.environment.aws_region}\\\"\\X*${replace(var.instance_type, ".", "\\.")}\\X*prices\\X*USD:\\\"(\\X*)\\\"
-EOF
-  )
-  # TODO: Detect EC2 Pricing
-  # price_per_instance_hr    = (
-  #   length(regexall(local.pricing_regex, data.http.ec2_base_pricing_js)) == 0 ? "n/a" :
-  #   regex(local.pricing_regex, data.http.ec2_base_pricing_js)[0]
-  # )
-  chocolatey_install_win = <<EOF
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command " [System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-EOF
-}
 
-data "aws_ami" "ec2_ami" {
-  owners      = [var.ami_owner] # Canonical
-  most_recent = true
-  filter {
-    name   = "name"
-    values = [var.ami_name_filter]
-  }
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
-}
+
+
 
 resource "aws_security_group" "ec2_sg_admin_ports" {
   count       = var.num_instances > 0 ? 1 : 0
@@ -167,7 +131,7 @@ resource "aws_instance" "ec2_instances" {
     aws_security_group.ecs_cluster_traffic[0].id
   ]])
   root_block_device {
-    volume_type = "gp2"
+    volume_type = "gp3"
     volume_size = var.instance_storage_gb
     encrypted   = true
   }

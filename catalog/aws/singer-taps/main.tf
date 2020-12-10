@@ -13,9 +13,9 @@ locals {
     contains(["CST"], var.scheduled_timezone) ? -6 :
     contains(["EST"], var.scheduled_timezone) ? -5 :
     contains(["UTC", "GMT"], var.scheduled_timezone) ? 0 :
-    1 / 0 # ERROR: currently supported timezone code are: "UTC", "GMT", "EST", "PST" and "PDT"
-  )
-  name_prefix = "${var.name_prefix}Tap-"
+    1 / 0
+    # ERROR: currently supported timezone code are: "UTC", "GMT", "EST", "PST" and "PDT"
+  ) name_prefix = "${var.name_prefix}Tap-"
   sync_commands = [
     for tap in var.taps :
     "tapdance sync ${tap.id} ${local.target.id} ${join(" ", var.container_args)}"
@@ -28,8 +28,8 @@ locals {
 /bin/bash -c "${join(" && ", local.sync_commands)}"
 EOF
     ))
-  )
-  target = (
+
+    ) target = (
     (var.data_lake_type == "S3") || (var.target == null) ?
     {
       id = "s3-csv"
@@ -55,8 +55,8 @@ EOF
       }
     } :
     var.target
-  )
-  container_image = coalesce(
+
+    ) container_image = coalesce(
     var.container_image, "dataopstk/tapdance:${var.taps[0].id}-to-${local.target.id}"
   )
 }

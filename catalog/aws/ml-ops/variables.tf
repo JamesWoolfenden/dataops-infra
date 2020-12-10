@@ -166,7 +166,7 @@ variable "static_hyperparameters" {
 Map of hyperparameter names to static values, which should not be altered during hyperparameter tuning.
 E.g. `{ "kfold_splits" = "5" }`
 EOF
-  type        = map
+  type        = map(any)
   default = {
     kfold_splits = "5"
   }

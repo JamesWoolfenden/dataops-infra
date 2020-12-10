@@ -10,8 +10,8 @@
 # }
 
 resource "null_resource" "pip" {
-  count = local.is_disabled ? 0 : (fileexists("${var.lambda_source_folder}/requirements.txt") ? 1 : 0)
-
+  count = local.is_disabled ? 0 : (fileexists("${var.lambda_source_folder}/requirements.txt") ? 1 : 0
+  )
   # Prepares Lambda package (https://github.com/hashicorp/terraform/issues/8344#issuecomment-345807204)
   triggers = {
     version_increment = 1.2
@@ -40,8 +40,8 @@ resource "null_resource" "copy_files" {
       local.is_windows ?
       "if not exist ${replace(local.temp_build_folder, "/", "\\")}\\NUL mkdir ${replace(local.temp_build_folder, "/", "\\")} && copy ${replace(var.lambda_source_folder, "/", "\\")}\\* ${replace(local.temp_build_folder, "/", "\\")}\\" :
       "mkdir -p ${local.temp_build_folder} && cp ${var.lambda_source_folder}/* ${local.temp_build_folder}/"
-    )
-  }
+
+  ) }
 }
 
 data "null_data_source" "wait_for_lambda_exporter" {

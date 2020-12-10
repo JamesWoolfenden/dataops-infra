@@ -34,8 +34,8 @@ output "ecs_runtask_cli" {
       ! var.use_fargate ? "" :
       "--network-configuration awsvpcConfiguration={subnets=[${element(local.subnets, 0)}],securityGroups=[${aws_security_group.ecs_tasks_sg.id}]${var.use_private_subnet ? "" : ",assignPublicIp=ENABLED"}}"
     }"
-  )
-}
+
+) }
 output "ecs_task_name" {
   description = "The name of the ECS task."
   value       = aws_ecs_task_definition.ecs_task.family
