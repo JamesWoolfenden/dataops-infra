@@ -54,4 +54,5 @@ resource "aws_db_instance" "rds_db" {
   ])
 
   # apply_immediately   = true
+  storage_encrypted = true
 }
