@@ -92,7 +92,8 @@ resource "aws_redshift_cluster" "redshift" {
     : var.admin_password
 
 
-  ) node_type         = var.node_type
+  )
+  node_type           = var.node_type
   number_of_nodes     = var.num_nodes
   cluster_type        = var.num_nodes > 1 ? "multi-node" : "single-node"
   kms_key_id          = var.kms_key_id

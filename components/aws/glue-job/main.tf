@@ -18,7 +18,8 @@ resource "aws_glue_job" "glue_job" {
       "s3://${var.s3_script_bucket_name}/${var.s3_script_path}" :
       "s3://${aws_s3_bucket_object.py_script_upload[0].bucket}/${aws_s3_bucket_object.py_script_upload[0].key}"
 
-    ) name         = var.with_spark ? null : "pythonshell"
+    )
+    name           = var.with_spark ? null : "pythonshell"
     python_version = 3
   }
 }

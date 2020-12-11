@@ -11,4 +11,5 @@ resource "null_resource" "validate_is_fargate_config_valid" {
 
 
     # Force an error if check fails
-) }
+  )
+}

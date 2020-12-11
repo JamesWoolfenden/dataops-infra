@@ -1,11 +1,9 @@
-##############################################
-### Standard variables for all AWS modules ###
-##############################################
 
 variable "name_prefix" {
   description = "Standard `name_prefix` module input."
   type        = string
 }
+
 variable "environment" {
   description = "Standard `environment` module input."
   type = object({
@@ -15,14 +13,11 @@ variable "environment" {
     private_subnets = list(string)
   })
 }
+
 variable "common_tags" {
   description = "Standard `common_tags` module input."
   type        = map(string)
 }
-
-########################################
-### Custom variables for this module ###
-########################################
 
 variable "secrets_map" {
   description = <<EOF
@@ -36,10 +31,11 @@ The location can be:
 EOF
   type        = map(string)
   default     = {}
+  sensitive   = true
 }
 
 variable "kms_key_id" {
   description = "Optional. A valid KMS key ID to use for encrypting the secret values. If omitted, the default KMS key will be applied."
-  # type        = string
-  default = null
+  type        = string
+  default     = null
 }

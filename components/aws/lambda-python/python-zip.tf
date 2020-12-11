@@ -1,13 +1,3 @@
-# data "http" "additional_reqs" {
-#   for_each = var.dependency_urls
-#   url      = each.value
-# }
-
-# resource "local_file" "additional_reqs_local" {
-#   for_each = var.dependency_urls
-#   filename = "${local.temp_build_folder}/${each.key}"
-#   content  = data.http.additional_reqs[each.value].content
-# }
 
 resource "null_resource" "pip" {
   count = local.is_disabled ? 0 : (fileexists("${var.lambda_source_folder}/requirements.txt") ? 1 : 0
@@ -41,7 +31,8 @@ resource "null_resource" "copy_files" {
       "if not exist ${replace(local.temp_build_folder, "/", "\\")}\\NUL mkdir ${replace(local.temp_build_folder, "/", "\\")} && copy ${replace(var.lambda_source_folder, "/", "\\")}\\* ${replace(local.temp_build_folder, "/", "\\")}\\" :
       "mkdir -p ${local.temp_build_folder} && cp ${var.lambda_source_folder}/* ${local.temp_build_folder}/"
 
-  ) }
+    )
+  }
 }
 
 data "null_data_source" "wait_for_lambda_exporter" {

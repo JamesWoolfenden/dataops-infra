@@ -1,6 +1,3 @@
-##############################################
-### Standard variables for all AWS modules ###
-##############################################
 
 variable "name_prefix" {
   description = "Standard `name_prefix` module input."
@@ -20,21 +17,11 @@ variable "common_tags" {
   type        = map(string)
 }
 
-########################################
-### Custom variables for this module ###
-########################################
-
 variable "writeable_buckets" {
   description = "Buckets which should be granted write access."
   type        = list(string)
   default     = []
 }
-
-# variable "readonly_buckets" {
-#   description = "Buckets which should be granted read-only access."
-#   type        = list(string)
-#   default     = []
-# }
 
 variable "state_machine_definition" {
   description = "The JSON definition of the state machine to be created."

@@ -1,0 +1,24 @@
+digraph vpc {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label=vpc nodesep=0.60 pad=2.0 rankdir=TB ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	subgraph cluster_VPC {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=VPC labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		subgraph "cluster_Private Subnet 1" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Private Subnet 1" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			b32074148b2b49888f645652adfdfef5 [label="ECS Cluster (e.g.)" height=1.9 image="/home/jim/.local/lib/python3.8/site-packages/resources/aws/compute/elastic-container-service.png" shape=none]
+		}
+		subgraph "cluster_Private Subnet 2" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Private Subnet 2" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"34f6d529d48a43b8b4999897a718c3c9" [label="EC2 Instance (e.g.)" height=1.9 image="/home/jim/.local/lib/python3.8/site-packages/resources/aws/compute/ec2.png" shape=none]
+		}
+		subgraph "cluster_Public Subnet 1" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Public Subnet 1" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"9e3d9dd0b8b0411ebba38db54401a69a" [label="NAT Gateway" height=1.9 image="/home/jim/.local/lib/python3.8/site-packages/resources/aws/network/transit-gateway.png" shape=none]
+			"1fe197dc26924d4cafcdf5408f4dc20f" [label="Internet Gateway" height=1.9 image="/home/jim/.local/lib/python3.8/site-packages/resources/aws/network/transit-gateway.png" shape=none]
+		}
+		subgraph "cluster_Public Subnet 2" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Public Subnet 2" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		}
+	}
+}
