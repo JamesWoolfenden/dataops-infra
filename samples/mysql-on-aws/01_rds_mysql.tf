@@ -3,10 +3,10 @@
 output "summary" { value = module.rds_mysql.summary }
 module "rds_mysql" {
   # source    = "git::https://github.com/slalom-ggp/dataops-infra.git//catalog/aws/mysql?ref=main"
-  source        = "../../catalog/aws/mysql"
-  name_prefix   = "${local.project_shortname}-"
-  environment   = module.env.environment
-  resource_tags = local.resource_tags
+  source      = "../../catalog/aws/mysql"
+  name_prefix = "${local.project_shortname}-"
+  environment = module.env.environment
+  common_tags = local.common_tags
 
   # CONFIGURE HERE:
 

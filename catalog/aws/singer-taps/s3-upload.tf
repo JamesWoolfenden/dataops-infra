@@ -27,7 +27,7 @@ resource "aws_s3_bucket_object" "s3_source_uploads" {
     ]
   )
   source   = "${var.local_metadata_path}/${each.value}"
-  tags     = var.resource_tags
+  tags     = var.common_tags
   metadata = {}
   # etag     = filebase64sha256("${var.local_metadata_path}/${each.value}")
 }

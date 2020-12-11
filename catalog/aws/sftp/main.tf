@@ -48,7 +48,7 @@ POLICY
 resource "aws_transfer_server" "sftp_server" {
   identity_provider_type = "SERVICE_MANAGED"
   logging_role           = aws_iam_role.sftp_service_role.arn
-  tags = merge(var.resource_tags, {
+  tags = merge(var.common_tags, {
     Name = "${var.name_prefix}transfer-server"
   })
 }

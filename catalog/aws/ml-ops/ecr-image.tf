@@ -4,7 +4,7 @@ module "ecr_image_byo_model" {
   source               = "../../../components/aws/ecr-image"
   name_prefix          = var.name_prefix
   environment          = var.environment
-  resource_tags        = var.resource_tags
+  common_tags          = var.common_tags
   aws_credentials_file = var.aws_credentials_file
 
   repository_name   = var.byo_model_image_name

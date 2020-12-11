@@ -9,7 +9,7 @@ module "admin_ssh_key_pair" {
   source                = "git::https://github.com/aaronsteers/terraform-aws-key-pair.git?ref=main"
   namespace             = lower(local.name_prefix)
   ssh_public_key_path   = abspath(local.secrets_folder)
-  tags                  = local.resource_tags
+  tags                  = local.common_tags
   name                  = "aws-ssh-key"
   delimiter             = ""
   generate_ssh_key      = true

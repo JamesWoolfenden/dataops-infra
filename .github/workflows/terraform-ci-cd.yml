@@ -38,14 +38,14 @@ jobs:
           pip3 install --pre slalom.dataops
           s-infra check_tf_metadata ./catalog \
               --check_module_headers \
-              --required_input_vars=[name_prefix,resource_tags,environment] \
+              --required_input_vars=[name_prefix,common_tags,environment] \
               --required_output_vars=[summary] \
               --check_input_descriptions \
               --check_output_descriptions \
               --raise_error
           s-infra check_tf_metadata ./components \
               --check_module_headers \
-              --required_input_vars=[name_prefix,resource_tags,environment] \
+              --required_input_vars=[name_prefix,common_tags,environment] \
               --required_output_vars=[] \
               --check_input_descriptions \
               --check_output_descriptions \

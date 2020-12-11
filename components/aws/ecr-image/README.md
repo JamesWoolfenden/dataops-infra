@@ -1,10 +1,8 @@
-
 # AWS ECR-Image
 
 `/components/aws/ecr-image`
 
 ## Overview
-
 
 ECR (Elastic Compute Repository) is the private-hosted AWS
 equivalent of DockerHub. ECR allows you to securely publish
@@ -26,7 +24,7 @@ The following providers are used by this module:
 
 The following input variables are required:
 
-### name\_prefix
+### name_prefix
 
 Description: Standard `name_prefix` module input.
 
@@ -47,25 +45,25 @@ object({
   })
 ```
 
-### resource\_tags
+### resource_tags
 
-Description: Standard `resource_tags` module input.
+Description: Standard `common_tags` module input.
 
 Type: `map(string)`
 
-### repository\_name
+### repository_name
 
 Description: Name of Docker repository.
 
 Type: `string`
 
-### source\_image\_path
+### source_image_path
 
 Description: Path to Docker image source.
 
 Type: `string`
 
-### aws\_credentials\_file
+### aws_credentials_file
 
 Description: Path to the AWS credentials file, used to ensure that the correct credentials are used during upload of the ECR image.
 
@@ -75,7 +73,7 @@ Type: `string`
 
 The following input variables are optional (have default values):
 
-### is\_disabled
+### is_disabled
 
 Description: Switch for disabling ECR image and push.
 
@@ -83,7 +81,7 @@ Type: `bool`
 
 Default: `false`
 
-### build\_args
+### build_args
 
 Description: Optional. Build arguments to use during `docker build`.
 
@@ -103,21 +101,22 @@ Default: `"latest"`
 
 The following outputs are exported:
 
-### ecr\_repo\_arn
+### ecr_repo_arn
 
 Description: The unique ID (ARN) of the ECR repo.
 
-### ecr\_repo\_root
+### ecr_repo_root
 
 Description: The path to the ECR repo, excluding image name.
 
-### ecr\_image\_url
+### ecr_image_url
 
 Description: The full path to the ECR image, including image name.
 
-### ecr\_image\_url\_and\_tag
+### ecr_image_url_and_tag
 
 Description: The full path to the ECR image, including image name and tag.
+
 ## Prereqs:
 
 _To use this module, you will need the following components:_
@@ -138,7 +137,7 @@ go get -u github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/docker-c
 
 **To install on Mac/Linux:**
 
-* [https://github.com/awslabs/amazon-ecr-credential-helper#user-content-installing](https://github.com/awslabs/amazon-ecr-credential-helper#user-content-installing)
+- [https://github.com/awslabs/amazon-ecr-credential-helper#user-content-installing](https://github.com/awslabs/amazon-ecr-credential-helper#user-content-installing)
 
 **Configure Docker to use the ECR Credential Helper:**
 
@@ -178,18 +177,17 @@ Import-Module AWSPowerShell.NetCore
 
 For more info: [https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up-windows.html#ps-installing-awspowershellnetcore](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up-windows.html#ps-installing-awspowershellnetcore)
 
-
----------------------
+---
 
 ## Source Files
 
 _Source code for this module is available using the links below._
 
-* [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/ecr-image/main.tf)
-* [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/ecr-image/outputs.tf)
-* [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/ecr-image/variables.tf)
+- [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/ecr-image/main.tf)
+- [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/ecr-image/outputs.tf)
+- [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/ecr-image/variables.tf)
 
----------------------
+---
 
 _**NOTE:** This documentation was auto-generated using
 `terraform-docs` and `s-infra` from `slalom.dataops`.

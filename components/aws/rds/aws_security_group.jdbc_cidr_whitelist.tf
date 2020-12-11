@@ -4,7 +4,7 @@ resource "aws_security_group" "jdbc_cidr_whitelist" {
   name_prefix = "${var.name_prefix}redshift-jdbc-cidr-whitelist"
   description = "Allow query traffic from specified JDBC CIDR"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
 
   ingress {
     protocol    = "tcp"

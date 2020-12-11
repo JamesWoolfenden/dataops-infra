@@ -130,7 +130,7 @@ module "step-functions" {
     aws_s3_bucket.output_store.id,
   ]
   environment              = var.environment
-  resource_tags            = var.resource_tags
+  common_tags              = var.common_tags
   lambda_functions         = module.lambda_functions.function_ids
   state_machine_definition = <<EOF
 {

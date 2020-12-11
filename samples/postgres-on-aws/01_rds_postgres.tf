@@ -3,10 +3,10 @@
 output "summary" { value = module.rds_postgres.summary }
 module "rds_postgres" {
   # source    = "git::https://github.com/slalom-ggp/dataops-infra.git//catalog/aws/postgres?ref=main"
-  source        = "../../catalog/aws/postgres"
-  name_prefix   = "${local.project_shortname}-"
-  environment   = module.env.environment
-  resource_tags = local.resource_tags
+  source      = "../../catalog/aws/postgres"
+  name_prefix = "${local.project_shortname}-"
+  environment = module.env.environment
+  common_tags = local.common_tags
 
   # CONFIGURE HERE:
 

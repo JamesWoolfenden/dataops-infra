@@ -1,10 +1,10 @@
 output "secrets_summary" { value = module.secrets.summary }
 module "secrets" {
   # BOILERPLATE HEADER (NO NEED TO CHANGE):
-  source        = "../../components/aws/secrets-manager"
-  name_prefix   = "${local.name_prefix}test-"
-  environment   = module.env.environment
-  resource_tags = local.resource_tags
+  source      = "../../components/aws/secrets-manager"
+  name_prefix = "${local.name_prefix}test-"
+  environment = module.env.environment
+  common_tags = local.common_tags
 
   # ADD OR MODIFY CONFIGURATION HERE:
 

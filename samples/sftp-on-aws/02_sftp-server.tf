@@ -1,10 +1,10 @@
 output "sftp_server_summary" { value = module.sftp_server.summary }
 module "sftp_server" {
   # BOILERPLATE HEADER (NO NEED TO CHANGE):
-  source        = "../../catalog/aws/sftp"
-  name_prefix   = local.name_prefix
-  resource_tags = local.resource_tags
-  environment   = module.env.environment
+  source      = "../../catalog/aws/sftp"
+  name_prefix = local.name_prefix
+  common_tags = local.common_tags
+  environment = module.env.environment
 
   # ADD OR MODIFY CONFIGURATION HERE:
 

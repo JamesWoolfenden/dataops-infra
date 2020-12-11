@@ -1,10 +1,8 @@
-
 # AWS ML-Ops
 
 `/catalog/aws/ml-ops`
 
 ## Overview
-
 
 This module automates MLOps tasks associated with training Machine Learning models.
 
@@ -30,7 +28,7 @@ The following providers are used by this module:
 
 The following input variables are required:
 
-### name\_prefix
+### name_prefix
 
 Description: Standard `name_prefix` module input.
 
@@ -51,19 +49,19 @@ object({
   })
 ```
 
-### resource\_tags
+### resource_tags
 
-Description: Standard `resource_tags` module input.
+Description: Standard `common_tags` module input.
 
 Type: `map(string)`
 
-### job\_name
+### job_name
 
 Description: Name prefix given to SageMaker model and training/tuning jobs (18 characters or less).
 
 Type: `string`
 
-### aws\_credentials\_file
+### aws_credentials_file
 
 Description: Path to the AWS credentials file, used to ensure that the correct credentials are used during upload of the ECR image.
 
@@ -73,7 +71,7 @@ Type: `string`
 
 The following input variables are optional (have default values):
 
-### feature\_store\_override
+### feature_store_override
 
 Description: Optionally, you can override the default feature store bucket with a bucket that already exists.
 
@@ -81,7 +79,7 @@ Type: `string`
 
 Default: `null`
 
-### script\_path
+### script_path
 
 Description: Local path for Glue Python script.
 
@@ -89,7 +87,7 @@ Type: `string`
 
 Default: `"source/scripts/transform.py"`
 
-### whl\_path
+### whl_path
 
 Description: Local path for Glue Python .whl file.
 
@@ -97,7 +95,7 @@ Type: `string`
 
 Default: `"source/scripts/python/pandasmodule-0.1-py3-none-any.whl"`
 
-### train\_local\_path
+### train_local_path
 
 Description: Local path for training data.
 
@@ -105,7 +103,7 @@ Type: `string`
 
 Default: `"source/data/train.csv"`
 
-### score\_local\_path
+### score_local_path
 
 Description: Local path for scoring data. Set to null for endpoint inference
 
@@ -113,7 +111,7 @@ Type: `string`
 
 Default: `"source/data/score.csv"`
 
-### endpoint\_name
+### endpoint_name
 
 Description: SageMaker inference endpoint to be created/updated. Endpoint will be created if
 it does not already exist.
@@ -122,7 +120,7 @@ Type: `string`
 
 Default: `"training-endpoint"`
 
-### tuning\_objective
+### tuning_objective
 
 Description: Hyperparameter tuning objective ('Minimize' or 'Maximize').
 
@@ -130,7 +128,7 @@ Type: `string`
 
 Default: `"Maximize"`
 
-### tuning\_metric
+### tuning_metric
 
 Description: Hyperparameter tuning metric, e.g. 'error', 'auc', 'f1', 'accuracy'.
 
@@ -138,7 +136,7 @@ Type: `string`
 
 Default: `"accuracy"`
 
-### inference\_comparison\_operator
+### inference_comparison_operator
 
 Description: Comparison operator for deploying the trained SageMaker model.
 Used in combination with `inference_metric_threshold`.
@@ -148,7 +146,7 @@ Type: `string`
 
 Default: `"NumericGreaterThan"`
 
-### inference\_metric\_threshold
+### inference_metric_threshold
 
 Description: Threshold for deploying the trained SageMaker model.
 Used in combination with `inference_comparison_operator`.
@@ -157,7 +155,7 @@ Type: `number`
 
 Default: `0.7`
 
-### endpoint\_or\_batch\_transform
+### endpoint_or_batch_transform
 
 Description: Choose whether to create/update an inference API endpoint or do batch inference on test data.
 
@@ -165,7 +163,7 @@ Type: `string`
 
 Default: `"Batch Transform"`
 
-### batch\_transform\_instance\_count
+### batch_transform_instance_count
 
 Description: Number of batch transformation instances.
 
@@ -173,7 +171,7 @@ Type: `number`
 
 Default: `1`
 
-### batch\_transform\_instance\_type
+### batch_transform_instance_type
 
 Description: Instance type for batch inference.
 
@@ -181,7 +179,7 @@ Type: `string`
 
 Default: `"ml.m4.xlarge"`
 
-### endpoint\_instance\_count
+### endpoint_instance_count
 
 Description: Number of initial endpoint instances.
 
@@ -189,7 +187,7 @@ Type: `number`
 
 Default: `1`
 
-### endpoint\_instance\_type
+### endpoint_instance_type
 
 Description: Instance type for inference endpoint.
 
@@ -197,7 +195,7 @@ Type: `string`
 
 Default: `"ml.m4.xlarge"`
 
-### max\_number\_training\_jobs
+### max_number_training_jobs
 
 Description: Maximum number of total training jobs for hyperparameter tuning.
 
@@ -205,7 +203,7 @@ Type: `number`
 
 Default: `3`
 
-### max\_parallel\_training\_jobs
+### max_parallel_training_jobs
 
 Description: Maximimum number of training jobs running in parallel for hyperparameter tuning.
 
@@ -213,7 +211,7 @@ Type: `number`
 
 Default: `1`
 
-### training\_job\_instance\_count
+### training_job_instance_count
 
 Description: Number of instances for training jobs.
 
@@ -221,7 +219,7 @@ Type: `number`
 
 Default: `1`
 
-### training\_job\_instance\_type
+### training_job_instance_type
 
 Description: Instance type for training jobs.
 
@@ -229,7 +227,7 @@ Type: `string`
 
 Default: `"ml.m4.xlarge"`
 
-### training\_job\_storage\_in\_gb
+### training_job_storage_in_gb
 
 Description: Instance volume size in GB for training jobs.
 
@@ -237,7 +235,7 @@ Type: `number`
 
 Default: `30`
 
-### static\_hyperparameters
+### static_hyperparameters
 
 Description: Map of hyperparameter names to static values, which should not be altered during hyperparameter tuning.
 E.g. `{ "kfold_splits" = "5" }`
@@ -252,15 +250,16 @@ Default:
 }
 ```
 
-### parameter\_ranges
+### parameter_ranges
 
 Description: Tuning ranges for hyperparameters.
 Expects a map of one or both "ContinuousParameterRanges" and "IntegerParameterRanges".
 Each item in the map should point to a list of object with the following keys:
- - Name        - name of the variable to be tuned
- - MinValue    - min value of the range
- - MaxValue    - max value of the range
- - ScalingType - 'Auto', 'Linear', 'Logarithmic', or 'ReverseLogarithmic'
+
+- Name - name of the variable to be tuned
+- MinValue - min value of the range
+- MaxValue - max value of the range
+- ScalingType - 'Auto', 'Linear', 'Logarithmic', or 'ReverseLogarithmic'
 
 Type:
 
@@ -320,7 +319,7 @@ Default:
 }
 ```
 
-### built\_in\_model\_image
+### built_in_model_image
 
 Description: Tuning ranges for hyperparameters.
 Specifying this means that 'bring-your-own' model is not required and the ECR image not created.
@@ -329,7 +328,7 @@ Type: `string`
 
 Default: `null`
 
-### byo\_model\_image\_name
+### byo_model_image_name
 
 Description: Image and repo name for bring your own model.
 
@@ -337,7 +336,7 @@ Type: `string`
 
 Default: `"byo-xgboost"`
 
-### byo\_model\_image\_source\_path
+### byo_model_image_source_path
 
 Description: Local source path for bring your own model docker image.
 
@@ -345,7 +344,7 @@ Type: `string`
 
 Default: `"source/containers/ml-ops-byo-xgboost"`
 
-### byo\_model\_image\_tag
+### byo_model_image_tag
 
 Description: Tag for bring your own model image.
 
@@ -353,7 +352,7 @@ Type: `string`
 
 Default: `"latest"`
 
-### glue\_job\_name
+### glue_job_name
 
 Description: Name of the Glue data transformation job name.
 
@@ -361,7 +360,7 @@ Type: `string`
 
 Default: `"data-transformation"`
 
-### glue\_job\_spark\_flag
+### glue_job_spark_flag
 
 Description: (Default=True). True to use the default (Spark) Glue job type. False to use Python Shell.
 
@@ -376,6 +375,7 @@ The following outputs are exported:
 ### summary
 
 Description: Summary of resources created by this module.
+
 ## Usage
 
 ### General Usage Instructions
@@ -432,23 +432,22 @@ Create a local folder in the code repository which contains at least the followi
    4. Metadata Store - For logging SageMaker metadata information about the tuning and training jobs.
    5. Output Store - Output from batch transformations (csv). Ignored when running endpoint inference.
 
-
----------------------
+---
 
 ## Source Files
 
 _Source code for this module is available using the links below._
 
-* [ecr-image.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/ecr-image.tf)
-* [glue-crawler.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/glue-crawler.tf)
-* [glue-job.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/glue-job.tf)
-* [lambda.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/lambda.tf)
-* [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/main.tf)
-* [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/outputs.tf)
-* [s3.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/s3.tf)
-* [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/variables.tf)
+- [ecr-image.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/ecr-image.tf)
+- [glue-crawler.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/glue-crawler.tf)
+- [glue-job.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/glue-job.tf)
+- [lambda.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/lambda.tf)
+- [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/main.tf)
+- [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/outputs.tf)
+- [s3.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/s3.tf)
+- [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/ml-ops/variables.tf)
 
----------------------
+---
 
 _**NOTE:** This documentation was auto-generated using
 `terraform-docs` and `s-infra` from `slalom.dataops`.

@@ -56,7 +56,7 @@ resource "aws_lambda_function" "python_lambda" {
     variables = merge(
       var.functions[each.value].environment,
       var.functions[each.value].secrets,
-      var.resource_tags
+      var.common_tags
     )
   }
   depends_on = [

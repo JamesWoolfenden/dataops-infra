@@ -25,7 +25,7 @@ resource "random_id" "random_pass" {
 resource "aws_db_subnet_group" "subnet_group" {
   name       = "${lower(var.name_prefix)}rds-subnet-group"
   subnet_ids = var.environment.public_subnets
-  tags       = var.resource_tags
+  tags       = var.common_tags
 }
 
 data "aws_vpc" "vpc_lookup" {

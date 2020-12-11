@@ -3,13 +3,14 @@ output "ecs_cluster_name" {
   value = (
     length(aws_ecs_cluster.ecs_cluster.arn) > 0 ?
     aws_ecs_cluster.ecs_cluster.name : "null"
-
 ) }
+
 output "ecs_cluster_arn" {
   description = "The unique ID (ARN) of the ECS cluster."
-  value       = aws_ecs_cluster.ecs_cluster.arn
+  value       = aws_ecs_cluster.ecs.arn
 }
+
 output "ecs_instance_role" {
   description = "The name of the IAM instance role used by the ECS cluster. (Can be used to grant additional permissions.)"
-  value       = aws_iam_role.ecs_instance_role.name
+  value       = aws_iam_role.ecs.name
 }

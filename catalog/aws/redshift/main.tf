@@ -15,7 +15,7 @@ module "redshift" {
   source              = "../../../components/aws/redshift"
   name_prefix         = local.name_prefix
   environment         = var.environment
-  resource_tags       = var.resource_tags
+  common_tags         = var.common_tags
   skip_final_snapshot = var.skip_final_snapshot
   admin_password      = var.admin_password
   admin_username      = var.admin_username

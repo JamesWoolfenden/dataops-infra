@@ -8,10 +8,10 @@ locals {
 output "summary" { value = module.redshift.summary }
 module "redshift" {
   # BOILERPLATE HEADER (NO NEED TO CHANGE):
-  source        = "../../catalog/aws/redshift"
-  name_prefix   = local.name_prefix
-  environment   = module.env.environment
-  resource_tags = local.resource_tags
+  source      = "../../catalog/aws/redshift"
+  name_prefix = local.name_prefix
+  environment = module.env.environment
+  common_tags = local.common_tags
 
   # CONFIGURE HERE:
 

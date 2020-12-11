@@ -30,7 +30,7 @@ resource "aws_security_group" "ec2_sg_admin_ports" {
   name_prefix = "${var.name_prefix}SecurityGroupForAdminPorts"
   description = "allow admin traffic from whitelisted IPs"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
   dynamic "ingress" {
     for_each = var.admin_ports
     content {
@@ -48,7 +48,7 @@ resource "aws_security_group" "ec2_sg_app_ports" {
   name_prefix = "${var.name_prefix}SecurityGroupForAppPorts"
   description = "allow app traffic on whitelisted ports"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
   dynamic "ingress" {
     for_each = var.app_ports
     content {
@@ -66,7 +66,7 @@ resource "aws_security_group" "ec2_sg_allow_all_outbound" {
   name_prefix = "${var.name_prefix}SecurityGroupForOutbound"
   description = "allow all outbound traffic"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
   egress {
     protocol    = "tcp"
     from_port   = "0"
@@ -80,7 +80,7 @@ resource "aws_security_group" "ecs_cluster_traffic" {
   name_prefix = "${var.name_prefix}SecurityGroupForClustering"
   description = "allow cluster traffic between instances"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
   dynamic "egress" {
     for_each = var.cluster_ports
     content {
@@ -120,7 +120,7 @@ resource "aws_instance" "ec2_instances" {
 
   user_data = var.is_windows ? replace(local.userdata_win, "<script>", "<script>\nSET EC2_NODE_INDEX=${count.index}\n") : replace(local.userdata_lin, "#!/bin/bash", "#!/bin/bash\nexport EC2_NODE_INDEX=${count.index}\n")
   tags = merge(
-    var.resource_tags,
+    var.common_tags,
     { name = "${var.name_prefix}EC2${count.index}" }
   )
   vpc_security_group_ids = flatten([[

@@ -3,17 +3,20 @@ resource "aws_iam_group" "data_lake_user_groups" {
   name     = each.value
   path     = "/${var.name_prefix}groups/"
 }
+
 resource "aws_iam_user" "new_users" {
   for_each      = var.users
   name          = each.value
   path          = "/"
   force_destroy = true
 }
+
 resource "aws_iam_access_key" "user_keys" {
   for_each = var.users
   user     = aws_iam_user.new_users[each.value].name
   pgp_key  = "keybase:${var.admin_keybase_id}"
 }
+
 resource "aws_iam_group_membership" "group_membership" {
   for_each = local.group_names
   name     = "${var.name_prefix}${each.value}-membership"
@@ -24,6 +27,7 @@ resource "aws_iam_group_membership" "group_membership" {
   ])
   group = aws_iam_group.data_lake_user_groups[each.value].name
 }
+
 resource "local_file" "encrypted_secret_key_files" {
   for_each = var.users
   filename = "${path.root}/.terraform/tmp/${each.value}-encrypted-secret.txt"

@@ -1,10 +1,8 @@
-
 # AWS Redshift
 
 `/catalog/aws/redshift`
 
 ## Overview
-
 
 Redshift is an AWS database platform which applies MPP (Massively-Parallel-Processing) principles to big data workloads in the cloud.
 
@@ -22,7 +20,7 @@ The following providers are used by this module:
 
 The following input variables are required:
 
-### name\_prefix
+### name_prefix
 
 Description: Standard `name_prefix` module input.
 
@@ -43,9 +41,9 @@ object({
   })
 ```
 
-### resource\_tags
+### resource_tags
 
-Description: Standard `resource_tags` module input.
+Description: Standard `common_tags` module input.
 
 Type: `map(string)`
 
@@ -61,7 +59,7 @@ Type: `string`
 
 Default: `null`
 
-### skip\_final\_snapshot
+### skip_final_snapshot
 
 Description: If true, will allow terraform to destroy the RDS cluster without performing a final backup.
 
@@ -69,7 +67,7 @@ Type: `bool`
 
 Default: `false`
 
-### admin\_username
+### admin_username
 
 Description: Optional (default='rsadmin'). The initial admin username.
 
@@ -77,7 +75,7 @@ Type: `string`
 
 Default: `"rsadmin"`
 
-### admin\_password
+### admin_password
 
 Description: The initial admin password. Must be 8 characters long.
 
@@ -85,7 +83,7 @@ Type: `string`
 
 Default: `null`
 
-### elastic\_ip
+### elastic_ip
 
 Description: Optional. An Elastic IP endpoint which will be used to for routing incoming traffic.
 
@@ -93,7 +91,7 @@ Type: `string`
 
 Default: `null`
 
-### node\_type
+### node_type
 
 Description: Enter the desired node type. The default and cheapest option is 'dc2.large' @ ~$0.25/hr, ~$180/mo (https://aws.amazon.com/redshift/pricing/)
 
@@ -101,7 +99,7 @@ Type: `string`
 
 Default: `"dc2.large"`
 
-### num\_nodes
+### num_nodes
 
 Description: Optional (default=1). The number of Redshift nodes to use.
 
@@ -109,7 +107,7 @@ Type: `number`
 
 Default: `1`
 
-### jdbc\_port
+### jdbc_port
 
 Description: Optional. Overrides the default JDBC port for incoming SQL connections.
 
@@ -117,7 +115,7 @@ Type: `number`
 
 Default: `5439`
 
-### kms\_key\_id
+### kms_key_id
 
 Description: Optional. The ARN for the KMS encryption key used in cluster encryption.
 
@@ -125,7 +123,7 @@ Type: `string`
 
 Default: `null`
 
-### s3\_logging\_bucket
+### s3_logging_bucket
 
 Description: Optional. An S3 bucket to use for log collection.
 
@@ -133,7 +131,7 @@ Type: `string`
 
 Default: `null`
 
-### s3\_logging\_path
+### s3_logging_path
 
 Description: Required if `s3_logging_bucket` is set. The path within the S3 bucket to use for log storage.
 
@@ -141,7 +139,7 @@ Type: `string`
 
 Default: `null`
 
-### jdbc\_cidr
+### jdbc_cidr
 
 Description: List of CIDR blocks which should be allowed to connect to the instance on the JDBC port.
 
@@ -149,7 +147,7 @@ Type: `list(string)`
 
 Default: `[]`
 
-### whitelist\_terraform\_ip
+### whitelist_terraform_ip
 
 Description: True to allow the terraform user to connect to the DB instance.
 
@@ -169,17 +167,17 @@ Description: The Redshift connection endpoint for the new server.
 
 Description: Summary of resources created by this module.
 
----------------------
+---
 
 ## Source Files
 
 _Source code for this module is available using the links below._
 
-* [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/redshift/main.tf)
-* [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/redshift/outputs.tf)
-* [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/redshift/variables.tf)
+- [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/redshift/main.tf)
+- [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/redshift/outputs.tf)
+- [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/redshift/variables.tf)
 
----------------------
+---
 
 _**NOTE:** This documentation was auto-generated using
 `terraform-docs` and `s-infra` from `slalom.dataops`.

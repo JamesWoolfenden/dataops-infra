@@ -1,6 +1,6 @@
 /*
 * ECS, or EC2 Container Service, is able to run docker containers natively in AWS cloud. While the module can support classic EC2-based and Fargate,
-* features, this module generally prefers "ECS Fargete", which allows dynamic launching of docker containers with no always-on cost and no servers
+* features, this module generally prefers "ECS Fargate", which allows dynamic launching of docker containers with no always-on cost and no servers
 * to manage or pay for when tasks are not running.
 *
 * Use in combination with the `ECS-Cluster` component.
@@ -37,73 +37,19 @@ locals {
   subnets        = var.use_private_subnet ? var.environment.private_subnets : var.environment.public_subnets
 }
 
-module "secrets" {
-  source        = "../secrets-manager"
-  name_prefix   = var.name_prefix
-  environment   = var.environment
-  resource_tags = var.resource_tags
-  secrets_map   = var.environment_secrets
-  kms_key_id    = var.secrets_manager_kms_key_id
-}
 
 resource "aws_cloudwatch_log_group" "cw_log_group" {
   name = "${var.name_prefix}AWSLogs-${random_id.suffix.dec}"
-  tags = var.resource_tags
-  # lifecycle { prevent_destroy = true }
+  tags = var.common_tags
 }
 
-resource "aws_ecs_task_definition" "ecs_task" {
-  family                   = "${var.name_prefix}Task-${random_id.suffix.dec}"
-  network_mode             = local.network_mode
-  requires_compatibilities = [local.launch_type]
-  cpu                      = var.container_num_cores * 1024
-  memory                   = var.container_ram_gb * 1024
-  execution_role_arn       = aws_iam_role.ecs_execution_role.arn
-  task_role_arn            = aws_iam_role.ecs_task_role.arn
-  tags                     = var.resource_tags
-  container_definitions    = <<DEFINITION
-[
-  {
-    "name":       var.container_name,
-    "image":      "${var.container_image}",
-    "cpu":         ${var.container_num_cores * 1024},
-    "memory":      ${var.container_ram_gb * 1024},
-    ${local.entrypoint_str}
-    ${local.command_str}
-    "logConfiguration": {
-      "logDriver": "awslogs",
-      "options": {
-        "awslogs-group":          "${aws_cloudwatch_log_group.cw_log_group.name}",
-        "awslogs-region":         "${var.environment.aws_region}",
-        "awslogs-stream-prefix":  "container-log"
-      }
-    },
-    "portMappings": [
-      {
-        "containerPort": ${var.app_ports[0]},
-        "hostPort":      ${var.app_ports[0]},
-        "protocol":      "tcp"
-      }
-    ],
-    "environment": [
-      ${local.container_env_vars_str}
-    ],
-    "secrets": [
-      ${local.container_secrets_str}
-    ],
-    "mountPoints": [],
-    "volumesFrom": [],
-    "essential" : true
-  }
-]
-DEFINITION
-}
+
 
 resource "aws_security_group" "ecs_tasks_sg" {
   name        = "${var.name_prefix}ECSSecurityGroup-${random_id.suffix.dec}"
   description = "allow inbound access on specific ports, outbound on all ports"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
   dynamic "ingress" {
     for_each = var.app_ports
     content {
@@ -130,31 +76,7 @@ resource "aws_security_group" "ecs_tasks_sg" {
   }
 }
 
-resource "aws_ecs_service" "ecs_always_on_service" {
-  count           = var.always_on ? 1 : 0
-  name            = "${var.name_prefix}ECSService-${random_id.suffix.dec}"
-  desired_count   = 1
-  cluster         = data.aws_ecs_cluster.ecs_cluster.arn
-  task_definition = aws_ecs_task_definition.ecs_task.arn
-  launch_type     = local.launch_type
-  # iam_role        = aws_iam_role.ecs_execution_role.name
-  depends_on = [aws_lb.alb]
-  network_configuration {
-    subnets          = local.subnets
-    security_groups  = [aws_security_group.ecs_tasks_sg.id]
-    assign_public_ip = true
-  }
-  dynamic "load_balancer" {
-    for_each = var.use_load_balancer ? toset(var.app_ports) : []
-    content {
-      target_group_arn = var.use_load_balancer ? aws_lb_target_group.alb_target_group[load_balancer.value].arn : null
-      container_name   = var.container_name
-      container_port   = load_balancer.value
-      # container_name = var.use_load_balancer ? var.container_name : null
-      # container_port = var.use_load_balancer ? var.admin_ports["WebPortal"] : null
-    }
-  }
-}
+
 
 resource "aws_cloudwatch_event_rule" "daily_run_schedule" {
   for_each = var.schedules

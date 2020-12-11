@@ -21,7 +21,7 @@ resource "random_id" "random_pass" {
 resource "aws_redshift_subnet_group" "subnet_group" {
   name       = "${lower(var.name_prefix)}redshift-subnet-group"
   subnet_ids = var.environment.public_subnets
-  tags       = var.resource_tags
+  tags       = var.common_tags
 }
 
 resource "aws_security_group" "tf_admin_ip_whitelist" {
@@ -29,7 +29,7 @@ resource "aws_security_group" "tf_admin_ip_whitelist" {
   name_prefix = "${var.name_prefix}redshift-tf-admin-whitelist"
   description = "Allow JDBC traffic from Terraform Admin IP"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
 
   ingress {
     protocol    = "tcp"
@@ -45,7 +45,7 @@ resource "aws_security_group" "jdbc_cidr_whitelist" {
   name_prefix = "${var.name_prefix}redshift-jdbc-cidr-whitelist"
   description = "Allow query traffic from specified JDBC CIDR"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
 
   ingress {
     protocol    = "tcp"
@@ -60,7 +60,7 @@ resource "aws_security_group" "redshift_security_group" {
   name_prefix = "${var.name_prefix}redshift-subnet-group"
   description = "Allow JDBC traffic from VPC subnets"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
 
   egress {
     protocol    = "tcp"
@@ -91,8 +91,8 @@ resource "aws_redshift_cluster" "redshift" {
     ? "${lower(substr(random_id.random_pass.hex, 0, 4))}${upper(substr(random_id.random_pass.hex, 4, 4))}"
     : var.admin_password
 
-  )
-  node_type           = var.node_type
+
+  ) node_type         = var.node_type
   number_of_nodes     = var.num_nodes
   cluster_type        = var.num_nodes > 1 ? "multi-node" : "single-node"
   kms_key_id          = var.kms_key_id
@@ -112,5 +112,5 @@ resource "aws_redshift_cluster" "redshift" {
     s3_key_prefix = var.s3_logging_path
   }
 
-  tags = var.resource_tags
+  tags = var.common_tags
 }

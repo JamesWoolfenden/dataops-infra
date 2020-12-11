@@ -58,39 +58,39 @@ Submitted PRs should meet the following code standards before being merged into 
 
 In addition to custom variables, each AWS catalog and component module should support the following standard input and output variables:
 
-| Direction | Variable Name   | Required | Description                                                                                                                                                         |
-| :-------: | --------------- | :------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  `input`  | `name_prefix`   |    Y     | Unless otherwise stated, this will be a concatenation like `{project_shortname}-` and will be used as a unique name prefix for resources created within the module. |
-|  `input`  | `environment`   |    N     | An object or map with values for `vpc_id`, `aws_region`, `public_subnets` and `private_subnets`, generally passed from the `aws/catalog/environment` module.        |
-|  `input`  | `resource_tags` |    N     | Allows designer to add default tags to child modules. These should then be propagated to all child resources which support tagging.                                 |
-| `output`  | `summary`       |    Y     | A human-readable summary of the resources which were deployed, especially unique resource IDs and connection strings (if applicable).                               |
+| Direction | Variable Name | Required | Description                                                                                                                                                         |
+| :-------: | ------------- | :------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  `input`  | `name_prefix` |    Y     | Unless otherwise stated, this will be a concatenation like `{project_shortname}-` and will be used as a unique name prefix for resources created within the module. |
+|  `input`  | `environment` |    N     | An object or map with values for `vpc_id`, `aws_region`, `public_subnets` and `private_subnets`, generally passed from the `aws/catalog/environment` module.        |
+|  `input`  | `common_tags` |    N     | Allows designer to add default tags to child modules. These should then be propagated to all child resources which support tagging.                                 |
+| `output`  | `summary`     |    Y     | A human-readable summary of the resources which were deployed, especially unique resource IDs and connection strings (if applicable).                               |
 
 ### Show Usage in Samples
 
-* As a rule, each component and category module should be referenced by at least one solution module in the `samples` folder, and the sample should demonstrate how to utilize the core functionality.
+- As a rule, each component and category module should be referenced by at least one solution module in the `samples` folder, and the sample should demonstrate how to utilize the core functionality.
 
-  * In addition to providing an easy on-ramp for new users to learn how to use your module, your sample module is also an entrypoint for the CI/CD pipeline to perform automated tests.
-  * If your sample code ever stops working, the automated tests will catch this, giving us a means to catch and fix the breakages before they can impact users.
+  - In addition to providing an easy on-ramp for new users to learn how to use your module, your sample module is also an entrypoint for the CI/CD pipeline to perform automated tests.
+  - If your sample code ever stops working, the automated tests will catch this, giving us a means to catch and fix the breakages before they can impact users.
 
 ### Adhere to Formatting Standards
 
-* Terraform makes it very easy way to auto-format modules, which in turn ensures a consistent experience when reviewing code across multiple authors.
+- Terraform makes it very easy way to auto-format modules, which in turn ensures a consistent experience when reviewing code across multiple authors.
 
-  * If you use VS Code, the defaults specified in `settings.json` should automatically apply formatting on each file save.
-  * Formatting is checked automatically after each commit by the CI/CD pipeline.
-  * If you receive failures related to Terraform formatting, simply run `terraform fmt -recursive` from the root of the repo. This command will auto format the entire repo and then you can simply commit the resulting changes.
+  - If you use VS Code, the defaults specified in `settings.json` should automatically apply formatting on each file save.
+  - Formatting is checked automatically after each commit by the CI/CD pipeline.
+  - If you receive failures related to Terraform formatting, simply run `terraform fmt -recursive` from the root of the repo. This command will auto format the entire repo and then you can simply commit the resulting changes.
 
 ### Create Self-documenting Modules
 
-* In order for components to be effectively used by a broad audience, each module must be self-documenting and should be included in the Catalog auto-document tool.
-  * Make sure each input and output variable has it's `description` field set.
-  * Make sure each module has a `main.tf` file and that the file contains a header comment with a paragraph description of the basic module functions. See [components/aws/secrets-manager/main.tf](../components/aws/secrets-manager/main.tf) for a sample.
-  * All input variables should be stored in `variables.tf` and all output variables should be stored in `outputs.tf`.
-  * After the above are met, update the project docs by navigating to the `docs` directory and running `build.py` (more details [here](../autodocs/README.md)). This command will update all module README files as well as [catalog/README.md](../catalog/README.md) and [components/README.md](../components/README.md).
+- In order for components to be effectively used by a broad audience, each module must be self-documenting and should be included in the Catalog auto-document tool.
+  - Make sure each input and output variable has it's `description` field set.
+  - Make sure each module has a `main.tf` file and that the file contains a header comment with a paragraph description of the basic module functions. See [components/aws/secrets-manager/main.tf](../components/aws/secrets-manager/main.tf) for a sample.
+  - All input variables should be stored in `variables.tf` and all output variables should be stored in `outputs.tf`.
+  - After the above are met, update the project docs by navigating to the `docs` directory and running `build.py` (more details [here](../autodocs/README.md)). This command will update all module README files as well as [catalog/README.md](../catalog/README.md) and [components/README.md](../components/README.md).
 
 ### Follow Purpose-Driven Design Patterns
 
 **Modules should be written as simply as possible, but no simpler.**
 
-* There is no expectation that modules should be fully generic or meet every use case.
-* Opinionated and purpose-driven approaches are preferred versus trying to build modules that are one-size-fits-all.
+- There is no expectation that modules should be fully generic or meet every use case.
+- Opinionated and purpose-driven approaches are preferred versus trying to build modules that are one-size-fits-all.

@@ -1,9 +1,9 @@
 
 module "step_function" {
-  source        = "../../../components/aws/step-functions"
-  name_prefix   = var.name_prefix
-  environment   = var.environment
-  resource_tags = var.resource_tags
+  source      = "../../../components/aws/step-functions"
+  name_prefix = var.name_prefix
+  environment = var.environment
+  common_tags = var.common_tags
 
   writeable_buckets = []
   lambda_functions  = {}

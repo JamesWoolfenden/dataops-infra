@@ -15,8 +15,8 @@ variable "environment" {
     private_subnets = list(string)
   })
 }
-variable "resource_tags" {
-  description = "Standard `resource_tags` module input."
+variable "common_tags" {
+  description = "Standard `common_tags` module input."
   type        = map(string)
 }
 

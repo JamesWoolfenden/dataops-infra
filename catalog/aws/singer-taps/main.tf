@@ -65,7 +65,7 @@ module "ecs_cluster" {
   source        = "../../../components/aws/ecs-cluster"
   name_prefix   = local.name_prefix
   environment   = var.environment
-  resource_tags = var.resource_tags
+  common_tags = var.common_tags
 }
 
 module "ecs_tap_sync_task" {
@@ -74,7 +74,7 @@ module "ecs_tap_sync_task" {
   source              = "../../../components/aws/ecs-task"
   name_prefix         = "${local.name_prefix}sync-"
   environment         = var.environment
-  resource_tags       = var.resource_tags
+  common_tags       = var.common_tags
   ecs_cluster_name    = module.ecs_cluster.ecs_cluster_name
   container_image     = local.container_image
   container_command   = local.container_command

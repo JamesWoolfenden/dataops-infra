@@ -15,7 +15,7 @@ locals {
 resource "aws_s3_bucket" "source_repository" {
   bucket = "${lower(var.name_prefix)}source-repository-${local.random_bucket_suffix}"
   acl    = "private"
-  tags   = var.resource_tags
+  tags   = var.common_tags
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
@@ -29,7 +29,7 @@ resource "aws_s3_bucket" "feature_store" {
   count  = var.feature_store_override == null ? 1 : 0
   bucket = "${lower(var.name_prefix)}feature-store-${local.random_bucket_suffix}"
   acl    = "private"
-  tags   = var.resource_tags
+  tags   = var.common_tags
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
@@ -42,7 +42,7 @@ resource "aws_s3_bucket" "feature_store" {
 resource "aws_s3_bucket" "extracts_store" {
   bucket = "${lower(var.name_prefix)}extracts-store-${local.random_bucket_suffix}"
   acl    = "private"
-  tags   = var.resource_tags
+  tags   = var.common_tags
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
@@ -55,7 +55,7 @@ resource "aws_s3_bucket" "extracts_store" {
 resource "aws_s3_bucket" "model_store" {
   bucket = "${lower(var.name_prefix)}model-store-${local.random_bucket_suffix}"
   acl    = "private"
-  tags   = var.resource_tags
+  tags   = var.common_tags
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
@@ -68,7 +68,7 @@ resource "aws_s3_bucket" "model_store" {
 resource "aws_s3_bucket" "metadata_store" {
   bucket = "${lower(var.name_prefix)}metadata-store-${local.random_bucket_suffix}"
   acl    = "private"
-  tags   = var.resource_tags
+  tags   = var.common_tags
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
@@ -81,7 +81,7 @@ resource "aws_s3_bucket" "metadata_store" {
 resource "aws_s3_bucket" "output_store" {
   bucket = "${lower(var.name_prefix)}output-store-${local.random_bucket_suffix}"
   acl    = "private"
-  tags   = var.resource_tags
+  tags   = var.common_tags
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {

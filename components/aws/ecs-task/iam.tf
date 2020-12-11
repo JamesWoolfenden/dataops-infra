@@ -21,7 +21,7 @@ data "aws_iam_policy" "SecretsManagerReadWrite" {
 
 resource "aws_iam_role" "ecs_execution_role" {
   name               = "${var.name_prefix}ECSExecutionRole-${random_id.suffix.dec}"
-  tags               = var.resource_tags
+  tags               = var.common_tags
   assume_role_policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -129,7 +129,7 @@ EOF
 
 resource "aws_iam_role" "ecs_task_role" {
   name               = "${var.name_prefix}ECSTaskRole-${random_id.suffix.dec}"
-  tags               = var.resource_tags
+  tags               = var.common_tags
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

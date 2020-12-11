@@ -6,7 +6,7 @@ resource "random_id" "suffix" {
 
 resource "aws_iam_role" "step_functions_role" {
   name                  = "${var.name_prefix}StepFunctionsRole-${random_id.suffix.dec}"
-  tags                  = var.resource_tags
+  tags                  = var.common_tags
   force_detach_policies = true
   assume_role_policy    = <<EOF
 {

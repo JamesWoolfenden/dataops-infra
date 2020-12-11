@@ -5,7 +5,7 @@ module "ml-ops" {
   #source        = "git::https://github.com/slalom-ggp/dataops-infra.git//catalog/aws/data-lake?ref=main"
   name_prefix          = local.name_prefix
   environment          = module.env.environment
-  resource_tags        = local.resource_tags
+  common_tags          = local.common_tags
   aws_credentials_file = local.aws_credentials_file
 
   # ADD OR MODIFY CONFIGURATION HERE:

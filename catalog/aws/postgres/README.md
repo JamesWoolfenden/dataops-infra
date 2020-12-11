@@ -1,14 +1,12 @@
-
 # AWS Postgres
 
 `/catalog/aws/postgres`
 
 ## Overview
 
-
 Deploys a Postgres server running on RDS.
 
-* NOTE: Requires AWS policy 'AmazonRDSFullAccess' on the terraform account
+- NOTE: Requires AWS policy 'AmazonRDSFullAccess' on the terraform account
 
 ## Requirements
 
@@ -22,7 +20,7 @@ No provider.
 
 The following input variables are required:
 
-### name\_prefix
+### name_prefix
 
 Description: Standard `name_prefix` module input.
 
@@ -43,13 +41,13 @@ object({
   })
 ```
 
-### resource\_tags
+### resource_tags
 
-Description: Standard `resource_tags` module input.
+Description: Standard `common_tags` module input.
 
 Type: `map(string)`
 
-### admin\_username
+### admin_username
 
 Description: The initial admin username.
 
@@ -59,7 +57,7 @@ Type: `string`
 
 The following input variables are optional (have default values):
 
-### admin\_password
+### admin_password
 
 Description: The initial admin password. Must be 8 characters long.
 
@@ -67,7 +65,7 @@ Type: `string`
 
 Default: `null`
 
-### database\_name
+### database_name
 
 Description: The name of the initial database to be created.
 
@@ -75,7 +73,7 @@ Type: `string`
 
 Default: `"default_db"`
 
-### elastic\_ip
+### elastic_ip
 
 Description: Optional. An Elastic IP endpoint which will be used to for routing incoming traffic.
 
@@ -91,7 +89,7 @@ Type: `string`
 
 Default: `"rds-postgres-db"`
 
-### instance\_class
+### instance_class
 
 Description: Enter the desired node type. The default and cheapest option is 'db.t2.micro' @ ~$0.017/hr, or ~$120/mo (https://aws.amazon.com/rds/mysql/pricing/ )
 
@@ -99,7 +97,7 @@ Type: `string`
 
 Default: `"db.t2.micro"`
 
-### jdbc\_port
+### jdbc_port
 
 Description: Optional. Overrides the default JDBC port for incoming SQL connections.
 
@@ -107,7 +105,7 @@ Type: `number`
 
 Default: `5432`
 
-### kms\_key\_id
+### kms_key_id
 
 Description: Optional. The ARN for the KMS encryption key used in cluster encryption.
 
@@ -115,7 +113,7 @@ Type: `string`
 
 Default: `null`
 
-### postgres\_version
+### postgres_version
 
 Description: Optional. Overrides the version of the Postres database engine.
 
@@ -123,7 +121,7 @@ Type: `string`
 
 Default: `"11.5"`
 
-### s3\_logging\_bucket
+### s3_logging_bucket
 
 Description: Optional. An S3 bucket to use for log collection.
 
@@ -131,7 +129,7 @@ Type: `string`
 
 Default: `null`
 
-### s3\_logging\_path
+### s3_logging_path
 
 Description: Required if `s3_logging_bucket` is set. The path within the S3 bucket to use for log storage.
 
@@ -139,7 +137,7 @@ Type: `string`
 
 Default: `null`
 
-### storage\_size\_in\_gb
+### storage_size_in_gb
 
 Description: The allocated storage value is denoted in GB
 
@@ -147,7 +145,7 @@ Type: `string`
 
 Default: `"10"`
 
-### skip\_final\_snapshot
+### skip_final_snapshot
 
 Description: If true, will allow terraform to destroy the RDS cluster without performing a final backup.
 
@@ -155,7 +153,7 @@ Type: `bool`
 
 Default: `false`
 
-### jdbc\_cidr
+### jdbc_cidr
 
 Description: List of CIDR blocks which should be allowed to connect to the instance on the JDBC port.
 
@@ -163,7 +161,7 @@ Type: `list(string)`
 
 Default: `[]`
 
-### whitelist\_terraform\_ip
+### whitelist_terraform_ip
 
 Description: True to allow the terraform user to connect to the DB instance.
 
@@ -183,17 +181,17 @@ Description: The Postgres connection endpoint for the new server.
 
 Description: Summary of resources created by this module.
 
----------------------
+---
 
 ## Source Files
 
 _Source code for this module is available using the links below._
 
-* [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/postgres/main.tf)
-* [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/postgres/outputs.tf)
-* [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/postgres/variables.tf)
+- [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/postgres/main.tf)
+- [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/postgres/outputs.tf)
+- [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/postgres/variables.tf)
 
----------------------
+---
 
 _**NOTE:** This documentation was auto-generated using
 `terraform-docs` and `s-infra` from `slalom.dataops`.

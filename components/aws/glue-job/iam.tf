@@ -3,7 +3,7 @@
 resource "aws_iam_role" "glue_job_role" {
   name = "${var.name_prefix}GlueJobRole"
 
-  tags = var.resource_tags
+  tags = var.common_tags
 
   assume_role_policy = <<EOF
 {

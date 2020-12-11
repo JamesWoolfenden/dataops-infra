@@ -19,7 +19,7 @@ locals {
   config            = yamldecode(data.local_file.config_yml.content)
   project_shortname = local.config["project_shortname"]
   aws_region        = local.config["aws_region"]
-  resource_tags     = local.config["resource_tags"]
+  common_tags       = local.config["common_tags"]
   name_prefix       = "${local.project_shortname}-"
 }
 
@@ -36,5 +36,5 @@ module "env" {
   name_prefix          = local.name_prefix
   aws_region           = local.aws_region
   aws_credentials_file = local.aws_credentials_file
-  resource_tags        = local.resource_tags
+  common_tags          = local.common_tags
 }

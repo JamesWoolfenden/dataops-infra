@@ -45,10 +45,10 @@ locals {
 }
 
 module "windows_tableau_servers" {
-  source        = "../../../components/aws/ec2"
-  name_prefix   = "${local.name_prefix}win-"
-  environment   = var.environment
-  resource_tags = var.resource_tags
+  source      = "../../../components/aws/ec2"
+  name_prefix = "${local.name_prefix}win-"
+  environment = var.environment
+  common_tags = var.common_tags
 
   is_windows          = true
   num_instances       = var.num_windows_instances
@@ -70,10 +70,10 @@ module "windows_tableau_servers" {
 }
 
 module "linux_tableau_servers" {
-  source        = "../../../components/aws/ec2"
-  name_prefix   = "${local.name_prefix}lin-"
-  environment   = var.environment
-  resource_tags = var.resource_tags
+  source      = "../../../components/aws/ec2"
+  name_prefix = "${local.name_prefix}lin-"
+  environment = var.environment
+  common_tags = var.common_tags
 
   num_instances       = var.num_linux_instances
   instance_type       = var.ec2_instance_type

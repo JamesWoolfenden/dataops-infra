@@ -2,7 +2,7 @@ resource "aws_security_group" "rds_security_group" {
   name_prefix = "${var.name_prefix}rds-subnet-group"
   description = "Allow JDBC traffic from VPC subnets"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
 
   egress {
     protocol    = "tcp"

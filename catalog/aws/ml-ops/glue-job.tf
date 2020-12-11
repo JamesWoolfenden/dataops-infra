@@ -1,8 +1,8 @@
 module "glue_job" {
-  source        = "../../../components/aws/glue-job"
-  name_prefix   = var.name_prefix
-  environment   = var.environment
-  resource_tags = var.resource_tags
+  source      = "../../../components/aws/glue-job"
+  name_prefix = var.name_prefix
+  environment = var.environment
+  common_tags = var.common_tags
 
   with_spark                 = var.glue_job_spark_flag
   s3_script_bucket_name      = aws_s3_bucket.source_repository.id

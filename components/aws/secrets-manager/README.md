@@ -1,10 +1,8 @@
-
 # AWS Secrets-Manager
 
 `/components/aws/secrets-manager`
 
 ## Overview
-
 
 This module takes as input a set of maps from variable names to secrets locations (in YAML or
 JSON). The module uploads those secrets to AWS Secrets Manager and returns the same map pointing
@@ -13,8 +11,8 @@ on to other resources which required access to those secrets.
 
 \*\*Usage Notes:\*\*
 
-* Any secrets locations which are already pointing to AWS secrets will simply be passed back through to the output with no changes.
-* For security reasons, this module does not accept inputs for secrets using the clear text of the secrets themselves. To properly use this module, first save the secrets to a YAML or JSON file which is excluded from source control.
+- Any secrets locations which are already pointing to AWS secrets will simply be passed back through to the output with no changes.
+- For security reasons, this module does not accept inputs for secrets using the clear text of the secrets themselves. To properly use this module, first save the secrets to a YAML or JSON file which is excluded from source control.
 
 ## Requirements
 
@@ -32,7 +30,7 @@ The following providers are used by this module:
 
 The following input variables are required:
 
-### name\_prefix
+### name_prefix
 
 Description: Standard `name_prefix` module input.
 
@@ -53,9 +51,9 @@ object({
   })
 ```
 
-### resource\_tags
+### resource_tags
 
-Description: Standard `resource_tags` module input.
+Description: Standard `common_tags` module input.
 
 Type: `map(string)`
 
@@ -63,21 +61,21 @@ Type: `map(string)`
 
 The following input variables are optional (have default values):
 
-### secrets\_map
+### secrets_map
 
 Description: A map between secret names and their locations.
 
 The location can be:
 
-  - ID of an existing Secrets Manager secret (`arn:aws:secretsmanager:...`)
+- ID of an existing Secrets Manager secret (`arn:aws:secretsmanager:...`)
 
-  - String with the local secrets file name and property names separated by `:` (`path/to/file.yml:my_key_name`)."
+- String with the local secrets file name and property names separated by `:` (`path/to/file.yml:my_key_name`)."
 
 Type: `map(string)`
 
 Default: `{}`
 
-### kms\_key\_id
+### kms_key_id
 
 Description: Optional. A valid KMS key ID to use for encrypting the secret values. If omitted, the default KMS key will be applied.
 
@@ -93,7 +91,7 @@ The following outputs are exported:
 
 Description: Summary of resources created by this module.
 
-### secrets\_ids
+### secrets_ids
 
 Description: A map of secrets names to each secret's unique ID within AWS Secrets Manager.
 
@@ -133,18 +131,17 @@ Description: A map of secrets names to each secret's unique ID within AWS Secret
 }
 ```
 
-
----------------------
+---
 
 ## Source Files
 
 _Source code for this module is available using the links below._
 
-* [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/secrets-manager/main.tf)
-* [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/secrets-manager/outputs.tf)
-* [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/secrets-manager/variables.tf)
+- [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/secrets-manager/main.tf)
+- [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/secrets-manager/outputs.tf)
+- [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/secrets-manager/variables.tf)
 
----------------------
+---
 
 _**NOTE:** This documentation was auto-generated using
 `terraform-docs` and `s-infra` from `slalom.dataops`.

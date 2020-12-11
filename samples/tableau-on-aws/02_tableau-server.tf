@@ -1,10 +1,10 @@
 output "tableau_server_summary" { value = module.tableau_server_on_aws.summary }
 module "tableau_server_on_aws" {
   # source      = "git::https://github.com/slalom-ggp/dataops-infra.git//catalog/aws/tableau-server?ref=main"
-  source        = "../../catalog/aws/tableau-server"
-  name_prefix   = local.name_prefix
-  environment   = module.env.environment
-  resource_tags = local.resource_tags
+  source      = "../../catalog/aws/tableau-server"
+  name_prefix = local.name_prefix
+  environment = module.env.environment
+  common_tags = local.common_tags
 
   # CONFIGURE HERE:
 

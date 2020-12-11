@@ -1,8 +1,8 @@
 module "lambda_functions" {
-  source        = "../../../components/aws/lambda-python"
-  name_prefix   = var.name_prefix
-  resource_tags = var.resource_tags
-  environment   = var.environment
+  source      = "../../../components/aws/lambda-python"
+  name_prefix = var.name_prefix
+  common_tags = var.common_tags
+  environment = var.environment
 
   runtime              = "python3.8"
   lambda_source_folder = "${path.module}/lambda-python"
@@ -50,10 +50,10 @@ module "lambda_functions" {
 }
 
 module "triggered_lambda" {
-  source        = "../../../components/aws/lambda-python"
-  name_prefix   = var.name_prefix
-  resource_tags = var.resource_tags
-  environment   = var.environment
+  source      = "../../../components/aws/lambda-python"
+  name_prefix = var.name_prefix
+  common_tags = var.common_tags
+  environment = var.environment
 
   runtime              = "python3.8"
   lambda_source_folder = "${path.module}/lambda-python"

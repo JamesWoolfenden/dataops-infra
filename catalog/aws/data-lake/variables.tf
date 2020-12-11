@@ -1,6 +1,3 @@
-##############################################
-### Standard variables for all AWS modules ###
-##############################################
 
 variable "name_prefix" {
   description = "Standard `name_prefix` module input."
@@ -17,14 +14,11 @@ variable "environment" {
   })
 }
 
-variable "resource_tags" {
-  description = "Standard `resource_tags` module input."
+variable "common_tags" {
+  description = "Standard `common_tags` module input."
   type        = map(string)
 }
 
-########################################
-### Custom variables for this module ###
-########################################
 
 variable "data_bucket_override" {
   description = "Optionally, you can override the default data bucket with a bucket that already exists."
@@ -36,10 +30,7 @@ variable "lambda_python_source" {
   type        = string
   default     = null
 }
-# variable "lambda_python_dependency_urls" {
-#   type    = map(string)
-#   default = {}
-# }
+
 variable "s3_triggers" {
   description = <<EOF
 List of S3 triggers objects, for example:

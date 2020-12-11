@@ -1,10 +1,8 @@
-
 # AWS Step-Functions
 
 `/components/aws/step-functions`
 
 ## Overview
-
 
 AWS Step Functions is a service provided by Amazon Web Services that makes it easier to orchestrate multiple AWS services
 to accomplish tasks. Step Functions allows you to create steps in a process where the output of one step becomes the input
@@ -28,7 +26,7 @@ The following providers are used by this module:
 
 The following input variables are required:
 
-### name\_prefix
+### name_prefix
 
 Description: Standard `name_prefix` module input.
 
@@ -49,13 +47,13 @@ object({
   })
 ```
 
-### resource\_tags
+### resource_tags
 
-Description: Standard `resource_tags` module input.
+Description: Standard `common_tags` module input.
 
 Type: `map(string)`
 
-### state\_machine\_definition
+### state_machine_definition
 
 Description: The JSON definition of the state machine to be created.
 
@@ -65,7 +63,7 @@ Type: `string`
 
 The following input variables are optional (have default values):
 
-### writeable\_buckets
+### writeable_buckets
 
 Description: Buckets which should be granted write access.
 
@@ -73,7 +71,7 @@ Type: `list(string)`
 
 Default: `[]`
 
-### lambda\_functions
+### lambda_functions
 
 Description: Map of function names to ARNs. Used to ensure state machine access to functions.
 
@@ -81,7 +79,7 @@ Type: `map(string)`
 
 Default: `{}`
 
-### ecs\_tasks
+### ecs_tasks
 
 Description: List of ECS tasks, to ensure state machine access permissions.
 
@@ -93,35 +91,35 @@ Default: `[]`
 
 The following outputs are exported:
 
-### state\_machine\_name
+### state_machine_name
 
 Description: The State Machine name.
 
-### state\_machine\_arn
+### state_machine_arn
 
 Description: The State Machine arn.
 
-### iam\_role\_arn
+### iam_role_arn
 
 Description: The IAM role used by the step function to access resources. Can be used to grant
 additional permissions to the role.
 
-### state\_machine\_url
+### state_machine_url
 
 Description:
 
----------------------
+---
 
 ## Source Files
 
 _Source code for this module is available using the links below._
 
-* [iam.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/step-functions/iam.tf)
-* [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/step-functions/main.tf)
-* [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/step-functions/outputs.tf)
-* [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/step-functions/variables.tf)
+- [iam.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/step-functions/iam.tf)
+- [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/step-functions/main.tf)
+- [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/step-functions/outputs.tf)
+- [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/step-functions/variables.tf)
 
----------------------
+---
 
 _**NOTE:** This documentation was auto-generated using
 `terraform-docs` and `s-infra` from `slalom.dataops`.

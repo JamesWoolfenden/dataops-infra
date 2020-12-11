@@ -1,18 +1,16 @@
-
 # AWS Dev-Box
 
 `/catalog/aws/dev-box`
 
 ## Overview
 
-
 The `dev-box` catalog module deploys an ECS-backed container which can be used to remotely test
 or develop using the native cloud environment. Applicable use cases include:
 
-* Debugging network firewall and routing rules
-* Debugging components which can only be run from whitelisted IP ranges
-* Offloading heavy processing from the developer's local laptop
-* Mitigating network relability issues when working from WiFi or home networks
+- Debugging network firewall and routing rules
+- Debugging components which can only be run from whitelisted IP ranges
+- Offloading heavy processing from the developer's local laptop
+- Mitigating network relability issues when working from WiFi or home networks
 
 ## Requirements
 
@@ -28,7 +26,7 @@ The following providers are used by this module:
 
 The following input variables are required:
 
-### name\_prefix
+### name_prefix
 
 Description: Standard `name_prefix` module input.
 
@@ -49,19 +47,19 @@ object({
   })
 ```
 
-### resource\_tags
+### resource_tags
 
-Description: Standard `resource_tags` module input.
+Description: Standard `common_tags` module input.
 
 Type: `map(string)`
 
-### source\_image
+### source_image
 
 Description: Required. The docker image to execute in the container (e.g. 'ubuntu:18.04').
 
 Type: `string`
 
-### aws\_credentials\_file
+### aws_credentials_file
 
 Description: Path to the AWS credentials file, used to ensure that the correct credentials are used during upload of the ECR image.
 
@@ -87,7 +85,7 @@ Type: `map(string)`
 
 Default: `{}`
 
-### container\_entrypoint
+### container_entrypoint
 
 Description: Optional. Override the docker image's entrypoint.
 
@@ -95,7 +93,7 @@ Type: `any`
 
 Default: `null`
 
-### container\_num\_cores
+### container_num_cores
 
 Description: Optional. Specify the number of cores to use in the container.
 
@@ -103,7 +101,7 @@ Type: `number`
 
 Default: `0.5`
 
-### container\_ram\_gb
+### container_ram_gb
 
 Description: Optional. Specify the amount of RAM to be available to the container.
 
@@ -111,7 +109,7 @@ Type: `number`
 
 Default: `1`
 
-### use\_private\_subnet
+### use_private_subnet
 
 Description: If True, tasks will use a private subnet and will require a NAT gateway to pull the docker
 image, and for any outbound traffic. If False, tasks will use a public subnet and will
@@ -121,7 +119,7 @@ Type: `bool`
 
 Default: `false`
 
-### ssh\_public\_key\_filepath
+### ssh_public_key_filepath
 
 Description: Optional. Path to a valid public key for SSH connectivity.
 
@@ -129,7 +127,7 @@ Type: `string`
 
 Default: `null`
 
-### ssh\_private\_key\_filepath
+### ssh_private_key_filepath
 
 Description: Optional. Path to a valid public key for SSH connectivity.
 
@@ -145,17 +143,17 @@ The following outputs are exported:
 
 Description: Summary of resources created by this module.
 
----------------------
+---
 
 ## Source Files
 
 _Source code for this module is available using the links below._
 
-* [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/dev-box/main.tf)
-* [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/dev-box/outputs.tf)
-* [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/dev-box/variables.tf)
+- [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/dev-box/main.tf)
+- [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/dev-box/outputs.tf)
+- [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//catalog/aws/dev-box/variables.tf)
 
----------------------
+---
 
 _**NOTE:** This documentation was auto-generated using
 `terraform-docs` and `s-infra` from `slalom.dataops`.

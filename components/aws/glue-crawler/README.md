@@ -1,10 +1,8 @@
-
 # AWS Glue-Crawler
 
 `/components/aws/glue-crawler`
 
 ## Overview
-
 
 Glue is AWS's fully managed extract, transform, and load (ETL) service.
 A Glue crawler is used to access a data store and create table definitions.
@@ -24,7 +22,7 @@ The following providers are used by this module:
 
 The following input variables are required:
 
-### name\_prefix
+### name_prefix
 
 Description: Standard `name_prefix` module input.
 
@@ -45,31 +43,31 @@ object({
   })
 ```
 
-### resource\_tags
+### resource_tags
 
-Description: Standard `resource_tags` module input.
+Description: Standard `common_tags` module input.
 
 Type: `map(string)`
 
-### glue\_database\_name
+### glue_database_name
 
 Description: Name of the Glue catalog database.
 
 Type: `string`
 
-### glue\_crawler\_name
+### glue_crawler_name
 
 Description: Name of the Glue crawler.
 
 Type: `string`
 
-### s3\_target\_bucket\_name
+### s3_target_bucket_name
 
 Description: S3 target bucket for Glue crawler.
 
 Type: `string`
 
-### target\_path
+### target_path
 
 Description: Path to crawler target file(s).
 
@@ -83,22 +81,22 @@ No optional input.
 
 The following outputs are exported:
 
-### glue\_crawler\_name
+### glue_crawler_name
 
 Description: The name of the Glue crawler.
 
----------------------
+---
 
 ## Source Files
 
 _Source code for this module is available using the links below._
 
-* [iam.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/glue-crawler/iam.tf)
-* [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/glue-crawler/main.tf)
-* [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/glue-crawler/outputs.tf)
-* [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/glue-crawler/variables.tf)
+- [iam.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/glue-crawler/iam.tf)
+- [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/glue-crawler/main.tf)
+- [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/glue-crawler/outputs.tf)
+- [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/glue-crawler/variables.tf)
 
----------------------
+---
 
 _**NOTE:** This documentation was auto-generated using
 `terraform-docs` and `s-infra` from `slalom.dataops`.

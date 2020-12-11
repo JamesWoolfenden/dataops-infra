@@ -3,7 +3,7 @@ resource "aws_security_group" "tf_admin_ip_whitelist" {
   name_prefix = "${var.name_prefix}rds-tf-admin-whitelist"
   description = "Allow JDBC traffic from Terraform Admin IP"
   vpc_id      = var.environment.vpc_id
-  tags        = var.resource_tags
+  tags        = var.common_tags
 
   ingress {
     protocol    = "tcp"

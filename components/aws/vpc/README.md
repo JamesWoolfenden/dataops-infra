@@ -1,20 +1,19 @@
-
 # AWS VPC
 
 `/components/aws/vpc`
 
 ## Overview
 
-
 The VPC module creates a number of network services which support other key AWS functions.
 
 Included automatically when creating this module:
-* 1 VPC which contains the following:
-    * 2 private subnets (for resources which **do not** need a public IP address)
-    * 2 public subnets (for resources which do need a public IP address)
-    * 1 NAT gateway (allows private subnet resources to reach the outside world)
-    * 1 Intenet gateway (allows resources in public and private subnets to reach the internet)
-    * route tables and routes to connect all of the above
+
+- 1 VPC which contains the following:
+  - 2 private subnets (for resources which **do not** need a public IP address)
+  - 2 public subnets (for resources which do need a public IP address)
+  - 1 NAT gateway (allows private subnet resources to reach the outside world)
+  - 1 Intenet gateway (allows resources in public and private subnets to reach the internet)
+  - route tables and routes to connect all of the above
 
 ## Requirements
 
@@ -32,21 +31,21 @@ The following providers are used by this module:
 
 - http
 
-- aws.region\_lookup (~> 2.10 ~> 2.10)
+- aws.region_lookup (~> 2.10 ~> 2.10)
 
 ## Required Inputs
 
 The following input variables are required:
 
-### name\_prefix
+### name_prefix
 
 Description: Standard `name_prefix` module input.
 
 Type: `string`
 
-### resource\_tags
+### resource_tags
 
-Description: Standard `resource_tags` module input.
+Description: Standard `common_tags` module input.
 
 Type: `map(string)`
 
@@ -71,7 +70,7 @@ object({
 
 Default: `null`
 
-### aws\_region
+### aws_region
 
 Description: Optional. Overrides the AWS region, otherwise will use the AWS region provided from context.
 
@@ -87,7 +86,7 @@ Type: `bool`
 
 Default: `false`
 
-### aws\_credentials\_file
+### aws_credentials_file
 
 Description: Optional, unless set at the main AWS provider level in which case it is required.
 
@@ -95,7 +94,7 @@ Type: `string`
 
 Default: `null`
 
-### aws\_profile
+### aws_profile
 
 Description: Optional, unless set at the main AWS provider level in which case it is required.
 
@@ -103,7 +102,7 @@ Type: `string`
 
 Default: `null`
 
-### vpc\_cidr
+### vpc_cidr
 
 Description: Optional. The CIDR block to use for the VPC network.
 
@@ -111,7 +110,7 @@ Type: `string`
 
 Default: `"10.0.0.0/16"`
 
-### subnet\_cidrs
+### subnet_cidrs
 
 Description: Optional. The CIDR blocks to use for the subnets.
 The list should have the 2 public subnet cidrs first, followed by the 2 private subnet cidrs.
@@ -125,37 +124,37 @@ Default: `null`
 
 The following outputs are exported:
 
-### vpc\_id
+### vpc_id
 
 Description: The unique ID of the VPC.
 
-### private\_subnets
+### private_subnets
 
 Description: The list of private subnets.
 
-### public\_subnets
+### public_subnets
 
 Description: The list of public subnets.
 
-### public\_route\_table
+### public_route_table
 
 Description: The ID of the route table for public subnets.
 
-### private\_route\_table
+### private_route_table
 
 Description: The ID of the route table for private subnets.
 
----------------------
+---
 
 ## Source Files
 
 _Source code for this module is available using the links below._
 
-* [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/vpc/main.tf)
-* [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/vpc/outputs.tf)
-* [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/vpc/variables.tf)
+- [main.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/vpc/main.tf)
+- [outputs.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/vpc/outputs.tf)
+- [variables.tf](https://github.com/slalom-ggp/dataops-infra/tree/main//components/aws/vpc/variables.tf)
 
----------------------
+---
 
 _**NOTE:** This documentation was auto-generated using
 `terraform-docs` and `s-infra` from `slalom.dataops`.

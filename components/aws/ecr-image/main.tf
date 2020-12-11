@@ -20,7 +20,7 @@ locals {
 resource "aws_ecr_repository" "ecr_repo" {
   count = var.is_disabled ? 0 : 1
   name  = replace(lower("${var.name_prefix}${var.repository_name}"), "_", "-")
-  tags  = var.resource_tags
+  tags  = var.common_tags
   # lifecycle { prevent_destroy = true }
 
   image_scanning_configuration {
