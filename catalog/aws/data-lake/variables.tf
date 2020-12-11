@@ -2,6 +2,7 @@
 variable "name_prefix" {
   description = "Standard `name_prefix` module input."
   type        = string
+  default     = ""
 }
 
 variable "environment" {
@@ -17,6 +18,9 @@ variable "environment" {
 variable "common_tags" {
   description = "Standard `common_tags` module input."
   type        = map(string)
+  default = {
+    createdby = "terraform"
+  }
 }
 
 

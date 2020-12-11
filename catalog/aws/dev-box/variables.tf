@@ -1,11 +1,9 @@
-##############################################
-### Standard variables for all AWS modules ###
-##############################################
-
 variable "name_prefix" {
   description = "Standard `name_prefix` module input."
   type        = string
+  default     = ""
 }
+
 variable "environment" {
   description = "Standard `environment` module input."
   type = object({
@@ -18,11 +16,11 @@ variable "environment" {
 variable "common_tags" {
   description = "Standard `common_tags` module input."
   type        = map(string)
+  default = {
+    createdby = "terraform"
+  }
 }
 
-########################################
-### Custom variables for this module ###
-########################################
 
 variable "source_image" {
   description = "Required. The docker image to execute in the container (e.g. 'ubuntu:18.04')."

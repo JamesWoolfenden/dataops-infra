@@ -19,7 +19,7 @@ locals {
   config            = yamldecode(data.local_file.config_yml.content)
   project_shortname = local.config["project_shortname"]
   aws_region        = local.config["aws_region"]
-  common_tags     = local.config["common_tags"]
+  common_tags       = local.config["common_tags"]
   name_prefix       = "${local.project_shortname}-"
 }
 
@@ -36,7 +36,7 @@ module "env" {
   name_prefix          = local.name_prefix
   aws_region           = local.aws_region
   aws_credentials_file = local.aws_credentials_file
-  common_tags        = local.common_tags
+  common_tags          = local.common_tags
 }
 
 resource "null_resource" "secrets_folder_protection" {
@@ -45,10 +45,11 @@ resource "null_resource" "secrets_folder_protection" {
     # on_failure = continue
     command = (
       module.env.is_windows_host == false ? "chmod -R 700 ${local.secrets_folder}" : join(" && ", [
-        "echo Orverriding permissions on ${local.secrets_folder} (running as %username%)...",
+        "echo Overriding permissions on ${local.secrets_folder} (running as %username%)...",
         "icacls ${local.secrets_folder} /grant:r %username%:(F) /t",
         "icacls ${local.secrets_folder} /inheritance:r /t"
       ])
 
-  ) }
+    )
+  }
 }

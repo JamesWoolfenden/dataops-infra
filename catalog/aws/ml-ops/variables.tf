@@ -5,7 +5,9 @@
 variable "name_prefix" {
   description = "Standard `name_prefix` module input."
   type        = string
+  default     = ""
 }
+
 variable "environment" {
   description = "Standard `environment` module input."
   type = object({
@@ -15,14 +17,15 @@ variable "environment" {
     private_subnets = list(string)
   })
 }
+
 variable "common_tags" {
   description = "Standard `common_tags` module input."
   type        = map(string)
+  default = {
+    createdby = "terraform"
+  }
 }
 
-########################################
-### Custom variables for this module ###
-########################################
 
 variable "feature_store_override" {
   description = "Optionally, you can override the default feature store bucket with a bucket that already exists."

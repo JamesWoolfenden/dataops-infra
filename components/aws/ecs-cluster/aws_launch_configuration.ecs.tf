@@ -13,4 +13,8 @@ resource "aws_launch_configuration" "ecs" {
 #!/usr/bin/env bash
 echo ECS_CLUSTER=${aws_ecs_cluster.ecs.name} >> /etc/ecs/ecs.config
 USER_DATA
+
+  root_block_device {
+    encrypted = true
+  }
 }

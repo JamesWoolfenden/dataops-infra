@@ -1,11 +1,10 @@
-##############################################
-### Standard variables for all AWS modules ###
-##############################################
 
 variable "name_prefix" {
   description = "Standard `name_prefix` module input."
   type        = string
+  default     = ""
 }
+
 variable "environment" {
   description = "Standard `environment` module input."
   type = object({
@@ -15,25 +14,28 @@ variable "environment" {
     private_subnets = list(string)
   })
 }
+
 variable "common_tags" {
   description = "Standard `common_tags` module input."
   type        = map(string)
-}
+  default = {
+    createdby = "terraform"
+  }
 
-########################################
-### Custom variables for this module ###
-########################################
+}
 
 variable "always_on" {
   description = "True to create an ECS Service with a single 'always-on' task instance."
   type        = bool
   default     = false
 }
+
 variable "admin_ports" {
   description = "A list of admin ports (to be governed by `admin_cidr`)."
   type        = list(string)
   default     = ["8080"]
 }
+
 variable "app_ports" {
   description = "A list of app ports (will be governed by `app_cidr`)."
   type        = list(string)

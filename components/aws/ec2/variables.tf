@@ -105,6 +105,7 @@ variable "use_https" {
   description = "True to enable https traffic on the instance."
   default     = false
 }
+
 variable "use_private_subnets" {
   description = <<EOF
 If True, EC2 will use a private subnets and will require a NAT gateway to pull the docker
@@ -114,4 +115,9 @@ order for EC2 instances to receive incoming traffic.
 EOF
   type        = bool
   default     = false
+}
+
+variable "associate_public_ip_address" {
+  type    = bool
+  default = false
 }
