@@ -13,6 +13,7 @@ resource "aws_kms_key" "group_kms_keys" {
   for_each                = local.group_names
   description             = "${var.name_prefix}${each.value}-kms"
   deletion_window_in_days = 10
+  enable_key_rotation = true
 }
 resource "aws_kms_alias" "group_kms_key_alias" {
   for_each      = local.group_names
