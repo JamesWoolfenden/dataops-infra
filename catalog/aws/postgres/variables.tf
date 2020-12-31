@@ -5,7 +5,7 @@
 variable "name_prefix" {
   description = "Standard `name_prefix` module input."
   type        = string
-  default=""
+  default     = ""
 }
 
 variable "environment" {
@@ -21,9 +21,9 @@ variable "environment" {
 variable "common_tags" {
   description = "Standard `common_tags` module input."
   type        = map(string)
-default={
-  createdby="terraform"
-}
+  default = {
+    createdby = "terraform"
+  }
 }
 
 ########################################
@@ -39,7 +39,7 @@ variable "admin_password" {
   description = "The initial admin password. Must be 8 characters long."
   type        = string
   default     = null
-  sensitive = true
+  sensitive   = true
 }
 variable "database_name" {
   description = "The name of the initial database to be created."
@@ -75,7 +75,7 @@ variable "kms_key_id" {
 }
 
 variable "postgres_version" {
-  type=string
+  type        = string
   description = "Optional. Overrides the version of the Postres database engine."
   default     = "11.5"
 }

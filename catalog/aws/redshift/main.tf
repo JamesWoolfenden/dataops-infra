@@ -10,5 +10,3 @@ data "aws_region" "current" {}
 locals {
   name_prefix = "${var.name_prefix}-RS"
 }
-
-

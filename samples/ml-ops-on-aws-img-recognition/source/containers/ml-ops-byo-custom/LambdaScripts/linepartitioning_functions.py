@@ -201,4 +201,3 @@ def check_breasttissue_linemethod(binarymask, image):
         indexinflection_topdown_y,
         maxtoprowpoint,
     )
-

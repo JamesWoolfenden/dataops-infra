@@ -102,4 +102,3 @@ def transfer_learning_model(
         model_final.load_weights(latest)
 
     return model_final
-

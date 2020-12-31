@@ -1,7 +1,7 @@
 """ This is a function for enabling data capture.
-Checks these 2 things of the input data: 
+Checks these 2 things of the input data:
     - features (aka input schema)
-    - descriptive statistics about input features 
+    - descriptive statistics about input features
 """
 
 from urllib.parse import urlparse

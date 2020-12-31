@@ -27,5 +27,3 @@ RUN chmod -R +x ./source/containers/ml-ops-byo-custom/
 # Set up the program in the image
 COPY DockerScripts /opt/program
 WORKDIR /opt/program
-
-

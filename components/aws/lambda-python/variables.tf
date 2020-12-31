@@ -108,5 +108,5 @@ EOF
 }
 
 variable "kms_key_id" {
-  type=string
+  type = string
 }

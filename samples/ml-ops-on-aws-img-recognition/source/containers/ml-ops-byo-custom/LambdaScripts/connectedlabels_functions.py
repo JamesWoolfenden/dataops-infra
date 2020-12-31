@@ -251,4 +251,3 @@ def main():
         maxtoprowpoint,
         linecroppedimage,
     )
-
