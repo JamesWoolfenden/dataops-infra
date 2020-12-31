@@ -5,7 +5,9 @@
 variable "name_prefix" {
   description = "Standard `name_prefix` module input."
   type        = string
+  default=""
 }
+
 variable "environment" {
   description = "Standard `environment` module input."
   type = object({
@@ -15,9 +17,13 @@ variable "environment" {
     private_subnets = list(string)
   })
 }
+
 variable "common_tags" {
   description = "Standard `common_tags` module input."
   type        = map(string)
+default={
+  createdby="terraform"
+}
 }
 
 ########################################
@@ -33,35 +39,43 @@ variable "admin_password" {
   description = "The initial admin password. Must be 8 characters long."
   type        = string
   default     = null
+  sensitive = true
 }
 variable "database_name" {
   description = "The name of the initial database to be created."
   default     = "default_db"
 }
+
 variable "elastic_ip" {
   description = "Optional. An Elastic IP endpoint which will be used to for routing incoming traffic."
   type        = string
   default     = null
 }
+
 variable "identifier" {
   description = "The database name which will be used within connection strings and URLs."
   default     = "rds-postgres-db"
 }
+
 variable "instance_class" {
   description = "Enter the desired node type. The default and cheapest option is 'db.t2.micro' @ ~$0.017/hr, or ~$120/mo (https://aws.amazon.com/rds/mysql/pricing/ )"
   type        = string
   default     = "db.t2.micro"
 }
+
 variable "jdbc_port" {
   description = "Optional. Overrides the default JDBC port for incoming SQL connections."
   default     = 5432
 }
+
 variable "kms_key_id" {
   description = "Optional. The ARN for the KMS encryption key used in cluster encryption."
   type        = string
   default     = null
 }
+
 variable "postgres_version" {
+  type=string
   description = "Optional. Overrides the version of the Postres database engine."
   default     = "11.5"
 }
@@ -71,16 +85,19 @@ variable "s3_logging_bucket" {
   type        = string
   default     = null
 }
+
 variable "s3_logging_path" {
   description = "Required if `s3_logging_bucket` is set. The path within the S3 bucket to use for log storage."
   type        = string
   default     = null
 }
+
 variable "storage_size_in_gb" {
   description = "The allocated storage value is denoted in GB"
   type        = string
   default     = "10"
 }
+
 variable "skip_final_snapshot" {
   description = "If true, will allow terraform to destroy the RDS cluster without performing a final backup."
   default     = false
@@ -91,6 +108,7 @@ variable "jdbc_cidr" {
   type        = list(string)
   default     = []
 }
+
 variable "whitelist_terraform_ip" {
   description = "True to allow the terraform user to connect to the DB instance."
   type        = bool

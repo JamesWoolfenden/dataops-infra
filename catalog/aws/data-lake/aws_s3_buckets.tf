@@ -15,6 +15,9 @@ data "aws_s3_bucket" "data_bucket_override" {
 }
 
 resource "aws_s3_bucket" "s3_data_bucket" {
+  #checkov:skip=CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+  #checkov:skip=CKV_AWS_52: "Ensure S3 bucket has MFA delete enabled"
+  #checkov:skip=CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
   count  = var.data_bucket_override == null ? 1 : 0
   bucket = local.data_bucket
   acl    = "private"
@@ -29,6 +32,9 @@ resource "aws_s3_bucket" "s3_data_bucket" {
 }
 
 resource "aws_s3_bucket" "s3_metadata_bucket" {
+  #checkov:skip=CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+  #checkov:skip=CKV_AWS_52: "Ensure S3 bucket has MFA delete enabled"
+  #checkov:skip=CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
   bucket = local.meta_bucket
   acl    = "private"
   tags   = var.common_tags
@@ -45,6 +51,9 @@ resource "aws_s3_bucket" "s3_metadata_bucket" {
 }
 
 resource "aws_s3_bucket" "s3_logging_bucket" {
+   #checkov:skip=CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+  #checkov:skip=CKV_AWS_52: "Ensure S3 bucket has MFA delete enabled"
+  #checkov:skip=CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
   bucket = local.logging_bucket
   acl    = "private"
   tags   = var.common_tags

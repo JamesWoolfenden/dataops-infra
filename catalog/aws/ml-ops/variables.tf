@@ -26,7 +26,6 @@ variable "common_tags" {
   }
 }
 
-
 variable "feature_store_override" {
   description = "Optionally, you can override the default feature store bucket with a bucket that already exists."
   type        = string

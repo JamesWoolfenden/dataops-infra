@@ -41,7 +41,7 @@ object({
   })
 ```
 
-### resource_tags
+### common_tags
 
 Description: Standard `common_tags` module input.
 

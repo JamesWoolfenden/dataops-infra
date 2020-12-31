@@ -48,7 +48,13 @@ resource "aws_iam_policy" "glue_job_policy" {
         {
             "Sid": "AllObjectActions",
             "Effect": "Allow",
-            "Action": "s3:*Object",
+            "Action": [
+              "s3:PutObject",
+              "s3:GetObject",
+              "s3:DeleteObject",
+              "s3:ReplicateObject",
+              "s3:RestoreObject"
+            ],
             "Resource": [
                 "arn:aws:s3:::${var.s3_script_bucket_name}/*",
                 "arn:aws:s3:::${var.s3_source_bucket_name}/*",

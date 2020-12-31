@@ -106,3 +106,7 @@ EOF
   }))
   default = null
 }
+
+variable "kms_key_id" {
+  type=string
+}

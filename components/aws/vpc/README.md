@@ -43,7 +43,7 @@ Description: Standard `name_prefix` module input.
 
 Type: `string`
 
-### resource_tags
+### common_tags
 
 Description: Standard `common_tags` module input.
 
