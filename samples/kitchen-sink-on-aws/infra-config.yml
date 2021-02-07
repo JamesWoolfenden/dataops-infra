@@ -1,4 +1,0 @@
-aws_region: us-east-1
-project_shortname: TestProject02
-common_tags:
-  admin_contact: my.admin@sample.com

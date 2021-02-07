@@ -15,7 +15,3 @@ resource "aws_security_group" "tf_admin_ip_whitelist" {
     cidr_blocks = ["${chomp(data.http.icanhazip[0].body)}/32"]
   }
 }
-
-
-
-

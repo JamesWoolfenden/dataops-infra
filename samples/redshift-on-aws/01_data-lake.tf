@@ -1,7 +1,0 @@
-module "data_lake_on_aws" {
-  # source      = "git::https://github.com/slalom-ggp/dataops-infra.git//catalog/aws/data-lake?ref=main"
-  source      = "../../catalog/aws/data-lake"
-  name_prefix = "${local.project_shortname}-Tableau-"
-  environment = module.env.environment
-  common_tags = local.common_tags
-}

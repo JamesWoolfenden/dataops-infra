@@ -23,6 +23,3 @@ resource "aws_security_group" "redshift_security_group" {
     cidr_blocks = [data.aws_vpc.vpc_lookup.cidr_block]
   }
 }
-
-
-
