@@ -4,7 +4,7 @@ resource "aws_lb_listener" "listener" {
   load_balancer_arn = aws_lb.alb[0].arn
   port              = each.value
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  ssl_policy        = "ELBSecurityPolicy-TLS-1-2-2017-01"
   certificate_arn   = var.ssl_certificate_arn
   default_action {
     type             = "forward"
