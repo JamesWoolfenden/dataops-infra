@@ -32,6 +32,6 @@ jobs:
       - name: Checkov action
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: "example/examplea"
+          directory: "components"
           framework: terraform
           args: "--output cli  --bc-api-key ${{ secrets.BC_API_KEY }}"

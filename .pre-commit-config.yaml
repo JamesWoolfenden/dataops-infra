@@ -52,4 +52,4 @@ repos:
     hooks:
       - id: checkov
         verbose: true
-        entry: checkov -d example/examplea
+        entry: checkov -d components
