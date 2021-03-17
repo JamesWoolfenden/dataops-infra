@@ -38,13 +38,6 @@ locals {
 }
 
 
-resource "aws_cloudwatch_log_group" "cw_log_group" {
-  name = "${var.name_prefix}AWSLogs-${random_id.suffix.dec}"
-  tags = var.common_tags
-}
-
-
-
 resource "aws_security_group" "ecs_tasks_sg" {
   name        = "${var.name_prefix}ECSSecurityGroup-${random_id.suffix.dec}"
   description = "allow inbound access on specific ports, outbound on all ports"
